@@ -1,7 +1,7 @@
 // Get the main things we need
 import React, { Component } from 'react';
-import { Card, Row, Col, Button } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import { Card, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 // TODO: make this actually generate a test using the API
 
