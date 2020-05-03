@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e07cd6681cf959dfc336866a7928a7d0",
+    "revision": "1b70d86f8d8a77541a1ba048c57567fe",
     "url": "/AutoMQG/index.html"
   },
   {
-    "revision": "f2f63e1f7f2539278487",
+    "revision": "fcc727abd64643b33344",
     "url": "/AutoMQG/static/css/2.85ec7da2.chunk.css"
   },
   {
-    "revision": "7450747d5f2be71fc5d7",
+    "revision": "28c22fbf60d16238f4d6",
     "url": "/AutoMQG/static/css/main.594a31bb.chunk.css"
   },
   {
-    "revision": "f2f63e1f7f2539278487",
-    "url": "/AutoMQG/static/js/2.3d2dc47f.chunk.js"
+    "revision": "fcc727abd64643b33344",
+    "url": "/AutoMQG/static/js/2.7cca2dda.chunk.js"
   },
   {
     "revision": "3453b8997016469371284a28c0e873e2",
-    "url": "/AutoMQG/static/js/2.3d2dc47f.chunk.js.LICENSE.txt"
+    "url": "/AutoMQG/static/js/2.7cca2dda.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7450747d5f2be71fc5d7",
-    "url": "/AutoMQG/static/js/main.c1f97dc7.chunk.js"
+    "revision": "28c22fbf60d16238f4d6",
+    "url": "/AutoMQG/static/js/main.bb41f2a3.chunk.js"
   },
   {
     "revision": "fe79dc12ac2c15a9a65e",
