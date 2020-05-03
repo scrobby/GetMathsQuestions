@@ -1,6 +1,8 @@
 // Get the main things we need
 import React, { Component } from 'react';
 
+// TODO: Add a random equation in here, just for fun
+
 export default class NotFound extends Component {
 
     render () {
