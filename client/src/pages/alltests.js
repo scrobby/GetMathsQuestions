@@ -10,7 +10,7 @@ export default class AllTests extends Component {
         return (
             <Row>
                 {
-                    this.props.questionTypes.map((type) => {
+                    this.props.generatorTypes.map((type) => {
                         return (
                             <Col xl="3" lg="4" md="6" sm="6" xs="12" key={type.pathComponent}>
                                 <Card style={{ marginTop: "25px" }}>

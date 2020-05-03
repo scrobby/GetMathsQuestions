@@ -26,7 +26,7 @@ class Navigation extends Component {
                         <NavDropdown title="Generate" active={this.props.location.pathname.includes("/generate/")}>
                             <NavDropdown.Item as={NavLink} exact to="/generate/">Show All</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            {this.props.questionTypes.map((type) => {
+                            {this.props.generatorTypes.map((type) => {
                                 return <NavDropdown.Item key={ type.pathComponent } as={NavLink} to={"/generate/" + type.pathComponent}>{type.name}</NavDropdown.Item>
                             })}
                         </NavDropdown>

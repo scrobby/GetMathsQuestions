@@ -11,7 +11,7 @@ export default class GenerateTest extends Component {
     render() {
         const path = this.props.match.params.id;
 
-        const test = this.props.questionTypes.filter((test) => test.pathComponent.includes(path))[0];
+        const test = this.props.generatorTypes.filter((test) => test.pathComponent.includes(path))[0];
 
         return (
             <>

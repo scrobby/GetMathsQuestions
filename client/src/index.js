@@ -19,87 +19,18 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // TODO: Make this much more reliable
-const questionTypes = [
-  {
-    name: "Type 1",
-    pathComponent: "type1",
-    description: "Description for type one",
-    exampleImage: null,
-    form: {
-      numbersAsIntegers: {
-        label: "Make answers integers",
-        type: "checkbox",
-        default: true,
-        help: "Check to make all questions integers"
-      },
-      numberOfQuestions: {
-        label: "Number of questions:",
-        help: "Enter the number of questions you want to generate",
-        type: "integer",
-        default: 10
-      },
-      answersBetween: {
-        label: "Answers range:",
-        type: "range",
-        low: {
-          default: 1,
-          help: "Lowest possible answer (must be more than X)",
-          min: null,
-          max: null
-        },
-        high: {
-          default: 999,
-          help: "Highest possible answer (must be less than X)",
-          min: null,
-          max: null
-        }
-      },
-      coefficientsBetween: {
-        label: "Variable coefficients range:",
-        type: "range",
-        low: {
-          default: 1,
-          help: "Lowest possible coefficient (must be more than X)",
-          min: null,
-          max: null
-        },
-        high: {
-          default: 999,
-          help: "Highest possible coefficient (must be less than X)",
-          min: null,
-          max: null
-        }
-      }
-    }
-  },
-  {
-    name: "Type 2",
-    pathComponent: "type2",
-    description: "Description for type two",
-    exampleImage: null
-  },
-  {
-    name: "Type 3",
-    pathComponent: "type3",
-    description: "Description for type three",
-    exampleImage: null
-  },
-  {
-    name: "Type 4",
-    pathComponent: "type4",
-    description: "Description for type four",
-    exampleImage: null
-  }
-]
+import generatorTypes from './GeneratorTypes.json'
+
+console.log(JSON.stringify(generatorTypes));
 
 function Routing() {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/generate/" component={(props) => <AllTests {...props} questionTypes={questionTypes} />} />
+      <Route exact path="/generate/" component={(props) => <AllTests {...props} generatorTypes={generatorTypes} />} />
       <Route path="/about" component={About} />
       {/* TODO: Make this a super smart way of rendering out the tests depending on type */}
-      <Route path="/generate/:id" component={(props) => <GenerateTest {...props} questionTypes={questionTypes} />} />
+      <Route path="/generate/:id" component={(props) => <GenerateTest {...props} generatorTypes={generatorTypes} />} />
       <Route component={NotFound} />
     </Switch>
   )
@@ -129,7 +60,7 @@ function Footer() {
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Navigation questionTypes={questionTypes} />
+      <Navigation generatorTypes={generatorTypes} />
       <Container fluid="md">
         <Row style={{ paddingBottom: "10px" }}>
           <Col>
