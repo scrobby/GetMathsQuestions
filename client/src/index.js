@@ -1,33 +1,75 @@
 // Get the main things we need
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
 
 // Get our top level views
-import Home from './components/home';
-import GenerateTest from './components/generate-test';
-import NotFound from './components/notfound';
+import Home from './pages/home';
+import About from './pages/about';
+import AllTests from './pages/alltests';
+import GenerateTest from './pages/generate'
+import NotFound from './pages/notfound';
+
+// Get the elements we need
+import Navigation from './components/navigation';
 
 // Get other assets for styling etc
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// TODO: Make this much more reliable
+import generatorTypes from './GeneratorTypes.json'
+
+console.log(JSON.stringify(generatorTypes));
 
 function Routing() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/generate-test" component={GenerateTest} />
-        {/* TODO: Make this a super smart way of rendering out the tests depending on type */}
-        <Route path="/generate-test/:id" component={GenerateTest} />
-        <Route component={NotFound} />
-      </Switch>
-    </Router>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/generate/" component={(props) => <AllTests {...props} generatorTypes={generatorTypes} />} />
+      <Route path="/about" component={About} />
+      {/* TODO: Make this a super smart way of rendering out the tests depending on type */}
+      <Route path="/generate/:id" component={(props) => <GenerateTest {...props} generatorTypes={generatorTypes} />} />
+      <Route component={NotFound} />
+    </Switch>
+  )
+}
+
+function Footer() {
+  return (
+    <>
+      <Row>
+        <Col>
+          <hr />
+        </Col>
+      </Row>
+      <Row className="footer">
+        <Col md="6" sm="12">
+          <p>Created by Carl and Morgane</p>
+          <p>Presumably we put something else here?</p>
+        </Col>
+        <Col md="6" sm="12" style={{ textAlign: "right" }}>
+          <p>And content on the other side?</p>
+        </Col>
+      </Row>
+    </>
   )
 }
 
 ReactDOM.render(
   <React.StrictMode>
-    <Routing />
+    <Router>
+      <Navigation generatorTypes={generatorTypes} />
+      <Container fluid="md">
+        <Row style={{ paddingBottom: "10px" }}>
+          <Col>
+            <Routing />
+          </Col>
+        </Row>
+        <Footer />
+      </Container>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
