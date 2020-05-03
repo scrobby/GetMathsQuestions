@@ -1,8 +1,8 @@
 // Get the main things we need
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
-import { Button, Container, Row, Col, Navbar } from 'react-bootstrap';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
 
 // Get our top level views
 import Home from './pages/home';
@@ -33,7 +33,7 @@ function Routing() {
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Navigation />
+      <Navigation/>
       <Container fluid="md">
         <Row>
           <Col>
