@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Row, Col } from 'react-bootstrap';
+import { Form, Row, Col, Button} from 'react-bootstrap';
 
 export class TestForm extends Component {
     constructor(props) {
@@ -56,6 +56,8 @@ export class TestForm extends Component {
         return (
             <Form>
                 {this.renderForm()}
+                <hr/>
+                <Button type="submit" className="float-right">Generate Questions</Button>
             </Form>
         )
     }
@@ -91,6 +93,7 @@ function TestFormItem(props) {
             item = TestFormInteger(props);
             break;
         case "range":
+            item = TestFormRange(props);
             break;
         default:
             break;
@@ -114,10 +117,9 @@ function TestFormItem(props) {
 function TestFormCheckbox(props) {
     return (
         <>
-            <Col>
-                <Form.Label className="float-left">{props.testData.label}</Form.Label>
-                <Form.Check 
-                    className="float-left" 
+            <Form.Label as={Col} sm="4" xs="8">{props.testData.label}</Form.Label>
+            <Col sm="8" xs="4">
+                <Form.Check
                     style={{ marginLeft: "1em" }}
                     onChange={props.onChange}
                     name={props.name}
@@ -131,13 +133,35 @@ function TestFormCheckbox(props) {
 function TestFormInteger(props) {
     return (
         <>
-            <Form.Label as={Col}>{props.testData.label}</Form.Label>
-            <Col>
-                <Form.Control 
+            <Form.Label as={Col} md="4">{props.testData.label}</Form.Label>
+            <Col md="8">
+                <Form.Control
                     type="number"
                     onChange={props.onChange}
                     name={props.name}
                     value={props.stateData}
+                />
+            </Col>
+        </>
+    )
+}
+
+function TestFormRange(props) {
+    return (
+        <>
+            <Form.Label as={Col} xs="12" md="4">{props.testData.label}</Form.Label>
+            <Col xs="6" md="4">
+                <Form.Control
+                    type="number"
+                    onChange={props.onChange}
+                    name={props.name}
+                />
+            </Col>
+            <Col xs="6" md="4">
+                <Form.Control
+                    type="number"
+                    onChange={props.onChange}
+                    name={props.name}
                 />
             </Col>
         </>
