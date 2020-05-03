@@ -12,6 +12,15 @@ code {
     monospace;
 }
 
-.activeLink {
-  color: red;
+.cg-navbar {
+  background: #79B1E4;
+  color: #8059D1;
+}
+
+.cg-navbar a.navbar-brand {
+  color: #8059D1;
+}
+
+h1 {
+  color: #8059D1;
 }

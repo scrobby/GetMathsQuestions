@@ -19,28 +19,28 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Routing() {
   return (
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/generate-test" component={GenerateTest} />
-        <Route path="/about" component={About} />
-        {/* TODO: Make this a super smart way of rendering out the tests depending on type */}
-        <Route path="/generate-test/:id" component={GenerateTest} />
-        <Route component={NotFound} />
-      </Switch>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/generate" component={GenerateTest} />
+      <Route path="/about" component={About} />
+      {/* TODO: Make this a super smart way of rendering out the tests depending on type */}
+      <Route path="/generate/:id" component={GenerateTest} />
+      <Route component={NotFound} />
+    </Switch>
   )
 }
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-    <Container>
-      <Navigation/>
-      <Row>
-        <Col>
-          <Routing />
-        </Col>
-      </Row>
-    </Container>
+      <Navigation />
+      <Container fluid="md">
+        <Row>
+          <Col>
+            <Routing />
+          </Col>
+        </Row>
+      </Container>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
