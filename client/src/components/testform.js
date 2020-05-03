@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Row, Col, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 
 export class TestForm extends Component {
     constructor(props) {
@@ -21,6 +21,8 @@ export class TestForm extends Component {
                         high: value.high.default ? value.high.default : 0
                     } // make sure to update this as a whole, not just individually
                     break;
+                default:
+                    break;
             }
         }
         this.state = newState;
@@ -30,19 +32,24 @@ export class TestForm extends Component {
     }
 
     handleChange(e) {
-        switch (e.target.type) {
+        const type = this.props.data[e.target.name].type;
+
+        switch (type) {
             case "checkbox":
                 this.setState({
                     [e.target.name]: e.target.checked
                 });
                 break;
             case "integer":
+                this.setState({
+                    [e.target.name]: e.target.value
+                });
                 break;
             case "range":
                 break;
+            default:
+                break;
         }
-
-        console.log("State: " + JSON.stringify(this.state));
     }
 
     render() {
@@ -73,14 +80,6 @@ export class TestForm extends Component {
     }
 }
 
-function renderTooltip(props) {
-    return (
-        <Tooltip id={props.id} {...props}>
-            {props.helpMessage}
-        </Tooltip>
-    );
-}
-
 function TestFormItem(props) {
     var item = null
 
@@ -89,8 +88,11 @@ function TestFormItem(props) {
             item = TestFormCheckbox(props);
             break;
         case "integer":
+            item = TestFormInteger(props);
             break;
         case "range":
+            break;
+        default:
             break;
     }
 
@@ -101,27 +103,42 @@ function TestFormItem(props) {
     )
 }
 
-function TestFormCheckbox(props) {
-    const overlayProps = {
-        id: props.name + "-tooltip",
-        helpMessage: props.testData.help
-    }
+// function renderTooltip(props) {
+//     return (
+//         <Tooltip id={props.id} {...props}>
+//             {props.helpMessage}
+//         </Tooltip>
+//     );
+// }
 
+function TestFormCheckbox(props) {
     return (
         <>
             <Col>
                 <Form.Label className="float-left">{props.testData.label}</Form.Label>
-                <OverlayTrigger
-                    placement="right"
-                    delay={{ show: 400, hide: 200 }}
-                    overlay={renderTooltip(overlayProps)} 
-                >
-                    <Form.Check className="float-left" style={{ marginLeft: "1em" }}
-                        onChange={props.onChange}
-                        name={props.name}
-                        checked={props.stateData}
-                    />
-                </OverlayTrigger>
+                <Form.Check 
+                    className="float-left" 
+                    style={{ marginLeft: "1em" }}
+                    onChange={props.onChange}
+                    name={props.name}
+                    checked={props.stateData}
+                />
+            </Col>
+        </>
+    )
+}
+
+function TestFormInteger(props) {
+    return (
+        <>
+            <Form.Label as={Col}>{props.testData.label}</Form.Label>
+            <Col>
+                <Form.Control 
+                    type="number"
+                    onChange={props.onChange}
+                    name={props.name}
+                    value={props.stateData}
+                />
             </Col>
         </>
     )

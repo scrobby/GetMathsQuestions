@@ -21,8 +21,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // TODO: Make this much more reliable
 import generatorTypes from './GeneratorTypes.json'
 
-console.log(JSON.stringify(generatorTypes));
-
 function Routing() {
   return (
     <Switch>
@@ -62,11 +60,7 @@ ReactDOM.render(
     <Router>
       <Navigation generatorTypes={generatorTypes} />
       <Container fluid="md">
-        <Row style={{ paddingBottom: "10px" }}>
-          <Col>
             <Routing />
-          </Col>
-        </Row>
         <Footer />
       </Container>
     </Router>

@@ -21,12 +21,8 @@ export default class GenerateTest extends Component {
                         <p className="test-description">{test.description}</p>
                     </Col>
                 </Row>
-                <Row>
-                    <Col xs="12">
-                        {/* TODO: Make this actually submit, probably having all the logic baked into the form itself */}
-                        <TestForm data={test.form} />
-                    </Col>
-                </Row>
+                {/* TODO: Make this actually submit, probably having all the logic baked into the form itself */}
+                <TestForm data={test.form} />
             </>
         )
     }
