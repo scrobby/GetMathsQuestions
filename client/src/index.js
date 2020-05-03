@@ -26,118 +26,50 @@ const questionTypes = [
     description: "Description for type one",
     exampleImage: null,
     form: {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "minLength": 3,
-          "description": "Please enter your name"
+      numbersAsIntegers: {
+        label: "Make answers integers",
+        type: "checkbox",
+        default: true,
+        help: "Check to make all questions integers"
+      },
+      numberOfQuestions: {
+        label: "Number of questions:",
+        help: "Enter the number of questions you want to generate",
+        type: "integer",
+        default: 10
+      },
+      answersBetween: {
+        label: "Answers range:",
+        type: "range",
+        low: {
+          default: 1,
+          help: "Lowest possible answer (must be more than X)",
+          min: null,
+          max: null
         },
-        "vegetarian": {
-          "type": "boolean"
-        },
-        "birthDate": {
-          "type": "string",
-          "format": "date"
-        },
-        "nationality": {
-          "type": "string",
-          "enum": [
-            "DE",
-            "IT",
-            "JP",
-            "US",
-            "RU",
-            "Other"
-          ]
-        },
-        "personalData": {
-          "type": "object",
-          "properties": {
-            "age": {
-              "type": "integer",
-              "description": "Please enter your age."
-            },
-            "height": {
-              "type": "number"
-            },
-            "drivingSkill": {
-              "type": "number",
-              "maximum": 10,
-              "minimum": 1,
-              "default": 7
-            }
-          },
-          "required": [
-            "age",
-            "height"
-          ]
-        },
-        "occupation": {
-          "type": "string"
-        },
-        "postalCode": {
-          "type": "string",
-          "maxLength": 5
+        high: {
+          default: 999,
+          help: "Highest possible answer (must be less than X)",
+          min: null,
+          max: null
         }
       },
-      "required": [
-        "occupation",
-        "nationality"
-      ]
-    },
-    formUi: {
-      "type": "VerticalLayout",
-      "elements": [
-        {
-          "type": "HorizontalLayout",
-          "elements": [
-            {
-              "type": "Control",
-              "scope": "#/properties/name"
-            },
-            {
-              "type": "Control",
-              "scope": "#/properties/personalData/properties/age"
-            },
-            {
-              "type": "Control",
-              "scope": "#/properties/birthDate"
-            }
-          ]
+      coefficientsBetween: {
+        label: "Variable coefficients range:",
+        type: "range",
+        low: {
+          default: 1,
+          help: "Lowest possible coefficient (must be more than X)",
+          min: null,
+          max: null
         },
-        {
-          "type": "Label",
-          "text": "Additional Information"
-        },
-        {
-          "type": "HorizontalLayout",
-          "elements": [
-            {
-              "type": "Control",
-              "scope": "#/properties/personalData/properties/height"
-            },
-            {
-              "type": "Control",
-              "scope": "#/properties/nationality"
-            },
-            {
-              "type": "Control",
-              "scope": "#/properties/occupation",
-              "suggestion": [
-                "Accountant",
-                "Engineer",
-                "Freelancer",
-                "Journalism",
-                "Physician",
-                "Student",
-                "Teacher",
-                "Other"
-              ]
-            }
-          ]
+        high: {
+          default: 999,
+          help: "Highest possible coefficient (must be less than X)",
+          min: null,
+          max: null
         }
-      ]
+      }
     }
   },
   {

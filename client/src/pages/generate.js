@@ -1,6 +1,7 @@
 // Get the main things we need
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
+import { TestForm } from '../components/testform';
 
 
 // TODO: make this actually generate a test using the API
@@ -22,15 +23,12 @@ export default class GenerateTest extends Component {
                 </Row>
                 <Row>
                     <Col xs="12">
-                        <JsonForms
-                            schema={test.form}
-                            uischema={test.formUi}
-                            renderers={materialRenderers}
-                            cells={materialCells}
-                            />
+                        {/* TODO: Make this actually submit, probably having all the logic baked into the form itself */}
+                        <TestForm data={test.form} />
                     </Col>
                 </Row>
             </>
         )
     }
 }
+
