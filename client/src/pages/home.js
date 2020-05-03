@@ -1,6 +1,6 @@
 // Get the main things we need
 import React, { Component } from 'react';
-import { Jumbotron, Row, Col } from 'react-bootstrap';
+import { Jumbotron } from 'react-bootstrap';
 
 // TODO: make this actually explain what the app does and be useful to someone
 

@@ -24,3 +24,39 @@ code {
 h1 {
   color: #8059D1;
 }
+
+.card-header {
+  background-color: #D3E9FC !important;
+}
+
+a.card-footer {
+  text-align: center;
+  transition: 0.3s;
+}
+
+a.card-footer:hover {
+  text-decoration: none;
+  background-color: #DDD;
+  transition: 0.3s;
+}
+
+.footer {
+  padding-bottom: 25px;
+  color: grey;
+}
+
+.footer-left {
+  text-align: left;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.footer p {
+  margin: 0px;
+}
+
+.test-description {
+  color: #666;
+}

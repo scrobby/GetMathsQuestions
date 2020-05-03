@@ -7,7 +7,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 // Get our top level views
 import Home from './pages/home';
 import About from './pages/about';
-import GenerateTest from './pages/generate-test';
+import AllTests from './pages/alltests';
+import GenerateTest from './pages/generate'
 import NotFound from './pages/notfound';
 
 // Get the elements we need
@@ -17,29 +18,80 @@ import Navigation from './components/navigation';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// TODO: Make this much more reliable
+const questionTypes = [
+  {
+    name: "Type 1",
+    pathComponent: "type1",
+    description: "Description for type one",
+    exampleImage: null,
+    form: {}
+  },
+  {
+    name: "Type 2",
+    pathComponent: "type2",
+    description: "Description for type two",
+    exampleImage: null
+  },
+  {
+    name: "Type 3",
+    pathComponent: "type3",
+    description: "Description for type three",
+    exampleImage: null
+  },
+  {
+    name: "Type 4",
+    pathComponent: "type4",
+    description: "Description for type four",
+    exampleImage: null
+  }
+]
+
 function Routing() {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/generate" component={GenerateTest} />
+      <Route exact path="/generate/" component={(props) => <AllTests {...props} questionTypes={questionTypes} />} />
       <Route path="/about" component={About} />
       {/* TODO: Make this a super smart way of rendering out the tests depending on type */}
-      <Route path="/generate/:id" component={GenerateTest} />
+      <Route path="/generate/:id" component={(props) => <GenerateTest {...props} questionTypes={questionTypes} />} />
       <Route component={NotFound} />
     </Switch>
+  )
+}
+
+function Footer() {
+  return (
+    <>
+    <Row>
+      <Col>
+        <hr />
+      </Col>
+    </Row>
+    <Row className="footer">
+      <Col md="6" sm="12">
+        <p>Created by Carl and Morgane</p>
+        <p>Presumably we put something else here?</p>
+      </Col>
+      <Col md="6" sm="12" style={{ textAlign: "right" }}>
+        <p>And content on the other side?</p>
+      </Col>
+    </Row>
+    </>
   )
 }
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Navigation/>
+      <Navigation questionTypes={questionTypes} />
       <Container fluid="md">
-        <Row>
+        <Row style={{ paddingBottom: "10px" }}>
           <Col>
             <Routing />
           </Col>
         </Row>
+        <Footer />
       </Container>
     </Router>
   </React.StrictMode>,
