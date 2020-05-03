@@ -79,7 +79,7 @@
                 "max": null
              },
              "high": {
-                "default": 999,
+                "default": 500,
                 "help": "Highest possible answer (must be less than X)",
                 "min": null,
                 "max": null
@@ -95,7 +95,7 @@
                 "max": null
              },
              "high": {
-                "default": 999,
+                "default": 500,
                 "help": "Highest possible coefficient (must be less than X)",
                 "min": null,
                 "max": null
@@ -131,7 +131,7 @@
                 "max": null
              },
              "high": {
-                "default": 999,
+                "default": 600,
                 "help": "Highest possible answer (must be less than X)",
                 "min": null,
                 "max": null
@@ -147,7 +147,7 @@
                 "max": null
              },
              "high": {
-                "default": 999,
+                "default": 250,
                 "help": "Highest possible coefficient (must be less than X)",
                 "min": null,
                 "max": null
@@ -183,7 +183,7 @@
                 "max": null
              },
              "high": {
-                "default": 999,
+                "default": 100,
                 "help": "Highest possible answer (must be less than X)",
                 "min": null,
                 "max": null
@@ -199,7 +199,7 @@
                 "max": null
              },
              "high": {
-                "default": 999,
+                "default": 10,
                 "help": "Highest possible coefficient (must be less than X)",
                 "min": null,
                 "max": null

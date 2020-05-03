@@ -5,6 +5,46 @@ export class TestForm extends Component {
     constructor(props) {
         super(props);
 
+        this.state = this.getNewState(props);
+
+        this.handleChange = this.handleChange.bind(this);
+        this.renderForm = this.renderForm.bind(this);
+        this.getNewState = this.getNewState.bind(this);
+    }
+
+    handleChange(e, type) {
+        switch (type) {
+            case "checkbox":
+                this.setState({
+                    [e.target.name]: e.target.checked
+                });
+                break;
+            case "integer":
+                this.setState({
+                    [e.target.name]: e.target.value
+                });
+                break;
+            case "range":
+                let pos = e.target.name.lastIndexOf('-');
+
+                let targetKey = e.target.name.substr(0, pos)
+                let targetType = e.target.name.substr(pos + 1, e.target.name.length - 1);
+
+                var newRange = this.state[targetKey]
+
+                newRange[targetType] = e.target.value;
+
+                this.setState({
+                    [targetKey]: newRange
+                })
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    getNewState(props) {
         var newState = {};
 
         for (const [key, value] of Object.entries(props.data)) {
@@ -25,31 +65,8 @@ export class TestForm extends Component {
                     break;
             }
         }
-        this.state = newState;
 
-        this.handleChange = this.handleChange.bind(this);
-        this.renderForm = this.renderForm.bind(this);
-    }
-
-    handleChange(e) {
-        const type = this.props.data[e.target.name].type;
-
-        switch (type) {
-            case "checkbox":
-                this.setState({
-                    [e.target.name]: e.target.checked
-                });
-                break;
-            case "integer":
-                this.setState({
-                    [e.target.name]: e.target.value
-                });
-                break;
-            case "range":
-                break;
-            default:
-                break;
-        }
+        return newState
     }
 
     render() {
@@ -121,7 +138,7 @@ function TestFormCheckbox(props) {
             <Col sm="8" xs="4">
                 <Form.Check
                     style={{ marginLeft: "1em" }}
-                    onChange={props.onChange}
+                    onChange={(e) => props.onChange(e, props.testData.type)}
                     name={props.name}
                     checked={props.stateData}
                 />
@@ -137,7 +154,7 @@ function TestFormInteger(props) {
             <Col md="8">
                 <Form.Control
                     type="number"
-                    onChange={props.onChange}
+                    onChange={(e) => props.onChange(e, props.testData.type)}
                     name={props.name}
                     value={props.stateData}
                 />
@@ -153,15 +170,17 @@ function TestFormRange(props) {
             <Col xs="6" md="4">
                 <Form.Control
                     type="number"
-                    onChange={props.onChange}
-                    name={props.name}
+                    onChange={(e) => props.onChange(e, props.testData.type)}
+                    name={props.name + "-low"}
+                    value={props.stateData.low}
                 />
             </Col>
             <Col xs="6" md="4">
                 <Form.Control
                     type="number"
-                    onChange={props.onChange}
-                    name={props.name}
+                    onChange={(e) => props.onChange(e, props.testData.type)}
+                    name={props.name + "-high"}
+                    value={props.stateData.high}
                 />
             </Col>
         </>
