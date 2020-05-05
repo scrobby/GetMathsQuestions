@@ -44,7 +44,7 @@ function Footer() {
       </Row>
       <Row className="footer">
         <Col md="6" sm="12">
-          <p>Created by Carl and Morgane</p>
+          <p>Created by <a href="https://twitter.com/scrobby" target="_blank">@scrobby</a> and <a href="https://twitter.com/morganemoss" target="_blank">@morganemoss</a></p>
           <p>Presumably we put something else here?</p>
         </Col>
         <Col md="6" sm="12" style={{ textAlign: "right" }}>
