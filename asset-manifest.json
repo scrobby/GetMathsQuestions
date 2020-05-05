@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/AutoMQG/static/css/main.594a31bb.chunk.css",
-    "main.js": "/AutoMQG/static/js/main.5e36c7c4.chunk.js",
-    "main.js.map": "/AutoMQG/static/js/main.5e36c7c4.chunk.js.map",
+    "main.js": "/AutoMQG/static/js/main.0f7f0754.chunk.js",
+    "main.js.map": "/AutoMQG/static/js/main.0f7f0754.chunk.js.map",
     "runtime-main.js": "/AutoMQG/static/js/runtime-main.b3c4e052.js",
     "runtime-main.js.map": "/AutoMQG/static/js/runtime-main.b3c4e052.js.map",
     "static/css/2.85ec7da2.chunk.css": "/AutoMQG/static/css/2.85ec7da2.chunk.css",
     "static/js/2.e0b44f5a.chunk.js": "/AutoMQG/static/js/2.e0b44f5a.chunk.js",
     "static/js/2.e0b44f5a.chunk.js.map": "/AutoMQG/static/js/2.e0b44f5a.chunk.js.map",
     "index.html": "/AutoMQG/index.html",
-    "precache-manifest.5119ab19b1adac6c0ed9e628de41ccf3.js": "/AutoMQG/precache-manifest.5119ab19b1adac6c0ed9e628de41ccf3.js",
+    "precache-manifest.30d4fa9322613d8a271ac0aae96c3a76.js": "/AutoMQG/precache-manifest.30d4fa9322613d8a271ac0aae96c3a76.js",
     "service-worker.js": "/AutoMQG/service-worker.js",
     "static/css/2.85ec7da2.chunk.css.map": "/AutoMQG/static/css/2.85ec7da2.chunk.css.map",
     "static/css/main.594a31bb.chunk.css.map": "/AutoMQG/static/css/main.594a31bb.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.85ec7da2.chunk.css",
     "static/js/2.e0b44f5a.chunk.js",
     "static/css/main.594a31bb.chunk.css",
-    "static/js/main.5e36c7c4.chunk.js"
+    "static/js/main.0f7f0754.chunk.js"
   ]
 }
