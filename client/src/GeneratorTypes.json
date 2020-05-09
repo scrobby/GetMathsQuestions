@@ -9,7 +9,7 @@
              "label": "Make answers integers",
              "type": "checkbox",
              "default": true,
-             "help": "Check to make all questions integers"
+             "help": "Check to make all answers integers"
           },
           "numberOfQuestions": {
              "label": "Number of questions:",
@@ -61,7 +61,7 @@
              "label": "Make answers integers",
              "type": "checkbox",
              "default": true,
-             "help": "Check to make all questions integers"
+             "help": "Check to make all answers integers"
           },
           "numberOfQuestions": {
              "label": "Number of questions:",
