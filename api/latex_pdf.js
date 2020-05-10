@@ -3,6 +3,10 @@ const latex = require('node-latex')
 const fs = require('fs')
 var uniqid = require('uniqid')
 
+// Base folders
+const texFilesFolder = __dirname + '/tex_files'
+const pdfFilesFolder = __dirname + '/pdf_tmp'
+
 /** @description Generates a PDF document using the specified tex file and options
  * @param {string} texfile The name of the texfile to use
  * @param {object} options
@@ -20,7 +24,27 @@ module.exports = (texfile, options, callback) => {
     filename = filename + (options.suffix ? options.fixdelimiter ? options.fixdelimiter : "-" : "")
     filename = filename + (options.suffix ? options.suffix : "") + ".pdf"
 
-    console.log("Name: " + filename)
+    const texPath = texFilesFolder + '/' + texfile
+    const pdfPath = pdfFilesFolder + '/' + filename
 
-    callback(null, filename)
+    let latexGenOptions = {
+        cmd: 'latexmk',
+        args: ['-pdf', '-g', '-f', '-bibtex', '-synctex=1', '-interaction=nonstopmode'],
+        passes: 2,
+        errorLogs: __dirname + '/errors.log'
+    }
+
+    let latexGenOptions2 = {
+        args: ['-pdf', '-g', '-f', '-bibtex', '-synctex=1', '-interaction=nonstopmode'],
+        passes: 2,
+        errorLogs: __dirname + '/errors.log'
+    }
+
+    const texPdf = latex(texPath, latexGenOptions2)
+
+    console.log("Path: " + pdfPath)
+
+    texPdf.pipe(fs.createWriteStream(pdfPath))
+    texPdf.on('error', err => callback(err, null))
+    texPdf.on('finish', () => callback(null, filename))
 }

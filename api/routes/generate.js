@@ -39,7 +39,7 @@ generator.get('/:type?', (req, res) => {
 
         pdflatex(genType.texFile, pdfOptions, (err, pdf) => {
             if (err) {
-                res.status(500).json({ message: "A server error occurred", error: err })
+                res.status(500).json({ message: "A server error occurred", error: JSON.stringify(err) })
             } else {
                 res.status(200).json({ message: "A PDF was generated!", pdfLocation: pdf })
             }

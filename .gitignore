@@ -20,6 +20,7 @@
 .env
 
 *.code-workspace
+*.log
 
 npm-debug.log*
 yarn-debug.log*
