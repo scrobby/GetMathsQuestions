@@ -22,17 +22,22 @@ generator.get('/', (req, res) => {
 
 generator.get('/:type?', (req, res) => {
     const type = req.params.type
-    const options = req.body
+    const texOptions = req.body
 
     console.log("Type: " + type)
-    console.log("Options: " + JSON.stringify(options))
+    console.log("Options: " + JSON.stringify(texOptions))
 
     let matchedTypes = typesAndTexFiles.filter((a) => a.path.includes(type));
 
     if (matchedTypes.length > 0) {
         let genType = matchedTypes[0]
 
-        pdflatex(genType.texFile, {numberOfQuestions: 1}, (err, pdf) => {
+        let pdfOptions = {
+            prefix: genType.path,
+            texparams: texOptions
+        }
+
+        pdflatex(genType.texFile, pdfOptions, (err, pdf) => {
             if (err) {
                 res.status(500).json({ message: "A server error occurred", error: err })
             } else {
