@@ -1,16 +1,10 @@
 [
     {
-       "name": "Type 1",
-       "pathComponent": "type1",
-       "description": "Description for type one",
+       "name": "Linear Simultaneous Equations",
+       "pathComponent": "linearSimultaneousEquations",
+       "description": "Simultaneous equations with 2 linear unknowns (x, y).",
        "exampleImage": null,
        "form": {
-          "numbersAsIntegers": {
-             "label": "Make answers integers",
-             "type": "checkbox",
-             "default": true,
-             "help": "Check to make all questions integers"
-          },
           "numberOfQuestions": {
              "label": "Number of questions:",
              "help": "Enter the number of questions you want to generate",
@@ -52,17 +46,11 @@
        }
     },
     {
-       "name": "Type 2",
-       "pathComponent": "type2",
-       "description": "Description for type two",
+       "name": "Factorising Quadratic Equations",
+       "pathComponent": "factorisingQuadraticEquations",
+       "description": "Quadratic expressions which can be factorised, with integer solutions for when the expression = zero.",
        "exampleImage": null,
        "form": {
-          "numbersAsIntegers": {
-             "label": "Make answers integers",
-             "type": "checkbox",
-             "default": true,
-             "help": "Check to make all questions integers"
-          },
           "numberOfQuestions": {
              "label": "Number of questions:",
              "help": "Enter the number of questions you want to generate",
@@ -85,8 +73,24 @@
                 "max": null
              }
           },
-          "coefficientsBetween": {
-             "label": "Variable coefficients range:",
+          "x2coefficientsBetween": {
+             "label": "Coefficient of x^2 range:",
+             "type": "range",
+             "low": {
+                "default": 1,
+                "help": "Lowest possible coefficient (must be more than X)",
+                "min": null,
+                "max": null
+             },
+             "high": {
+                "default": 999,
+                "help": "Highest possible coefficient (must be less than X)",
+                "min": null,
+                "max": null
+             }
+          },
+          "xcoefficientsBetween": {
+             "label": "Coefficient of x range:",
              "type": "range",
              "low": {
                 "default": 1,
