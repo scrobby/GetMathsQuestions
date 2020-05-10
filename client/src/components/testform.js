@@ -1,10 +1,50 @@
 import React, { Component } from 'react';
-import { Form, Row, Col, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Form, Row, Col, Button} from 'react-bootstrap';
 
 export class TestForm extends Component {
     constructor(props) {
         super(props);
 
+        this.state = this.getNewState(props);
+
+        this.handleChange = this.handleChange.bind(this);
+        this.renderForm = this.renderForm.bind(this);
+        this.getNewState = this.getNewState.bind(this);
+    }
+
+    handleChange(e, type) {
+        switch (type) {
+            case "checkbox":
+                this.setState({
+                    [e.target.name]: e.target.checked
+                });
+                break;
+            case "integer":
+                this.setState({
+                    [e.target.name]: e.target.value
+                });
+                break;
+            case "range":
+                let pos = e.target.name.lastIndexOf('-');
+
+                let targetKey = e.target.name.substr(0, pos)
+                let targetType = e.target.name.substr(pos + 1, e.target.name.length - 1);
+
+                var newRange = this.state[targetKey]
+
+                newRange[targetType] = e.target.value;
+
+                this.setState({
+                    [targetKey]: newRange
+                })
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    getNewState(props) {
         var newState = {};
 
         for (const [key, value] of Object.entries(props.data)) {
@@ -21,34 +61,20 @@ export class TestForm extends Component {
                         high: value.high.default ? value.high.default : 0
                     } // make sure to update this as a whole, not just individually
                     break;
+                default:
+                    break;
             }
         }
-        this.state = newState;
 
-        this.handleChange = this.handleChange.bind(this);
-        this.renderForm = this.renderForm.bind(this);
-    }
-
-    handleChange(e) {
-        switch (e.target.type) {
-            case "checkbox":
-                this.setState({
-                    [e.target.name]: e.target.checked
-                });
-                break;
-            case "integer":
-                break;
-            case "range":
-                break;
-        }
-
-        console.log("State: " + JSON.stringify(this.state));
+        return newState
     }
 
     render() {
         return (
             <Form>
                 {this.renderForm()}
+                <hr/>
+                <Button type="submit" className="float-right">Generate Questions</Button>
             </Form>
         )
     }
@@ -73,14 +99,6 @@ export class TestForm extends Component {
     }
 }
 
-function renderTooltip(props) {
-    return (
-        <Tooltip id={props.id} {...props}>
-            {props.helpMessage}
-        </Tooltip>
-    );
-}
-
 function TestFormItem(props) {
     var item = null
 
@@ -89,8 +107,12 @@ function TestFormItem(props) {
             item = TestFormCheckbox(props);
             break;
         case "integer":
+            item = TestFormInteger(props);
             break;
         case "range":
+            item = TestFormRange(props);
+            break;
+        default:
             break;
     }
 
@@ -101,27 +123,65 @@ function TestFormItem(props) {
     )
 }
 
-function TestFormCheckbox(props) {
-    const overlayProps = {
-        id: props.name + "-tooltip",
-        helpMessage: props.testData.help
-    }
+// function renderTooltip(props) {
+//     return (
+//         <Tooltip id={props.id} {...props}>
+//             {props.helpMessage}
+//         </Tooltip>
+//     );
+// }
 
+function TestFormCheckbox(props) {
     return (
         <>
-            <Col>
-                <Form.Label className="float-left">{props.testData.label}</Form.Label>
-                <OverlayTrigger
-                    placement="right"
-                    delay={{ show: 400, hide: 200 }}
-                    overlay={renderTooltip(overlayProps)} 
-                >
-                    <Form.Check className="float-left" style={{ marginLeft: "1em" }}
-                        onChange={props.onChange}
-                        name={props.name}
-                        checked={props.stateData}
-                    />
-                </OverlayTrigger>
+            <Form.Label as={Col} sm="4" xs="8">{props.testData.label}</Form.Label>
+            <Col sm="8" xs="4">
+                <Form.Check
+                    style={{ marginLeft: "1em" }}
+                    onChange={(e) => props.onChange(e, props.testData.type)}
+                    name={props.name}
+                    checked={props.stateData}
+                />
+            </Col>
+        </>
+    )
+}
+
+function TestFormInteger(props) {
+    return (
+        <>
+            <Form.Label as={Col} md="4">{props.testData.label}</Form.Label>
+            <Col md="8">
+                <Form.Control
+                    type="number"
+                    onChange={(e) => props.onChange(e, props.testData.type)}
+                    name={props.name}
+                    value={props.stateData}
+                />
+            </Col>
+        </>
+    )
+}
+
+function TestFormRange(props) {
+    return (
+        <>
+            <Form.Label as={Col} xs="12" md="4">{props.testData.label}</Form.Label>
+            <Col xs="6" md="4">
+                <Form.Control
+                    type="number"
+                    onChange={(e) => props.onChange(e, props.testData.type)}
+                    name={props.name + "-low"}
+                    value={props.stateData.low}
+                />
+            </Col>
+            <Col xs="6" md="4">
+                <Form.Control
+                    type="number"
+                    onChange={(e) => props.onChange(e, props.testData.type)}
+                    name={props.name + "-high"}
+                    value={props.stateData.high}
+                />
             </Col>
         </>
     )

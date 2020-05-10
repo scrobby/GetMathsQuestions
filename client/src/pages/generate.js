@@ -9,6 +9,7 @@ import { TestForm } from '../components/testform';
 export default class GenerateTest extends Component {
 
     render() {
+        console.log("Refreshing I guess")
         const path = this.props.match.params.id;
 
         const test = this.props.generatorTypes.filter((test) => test.pathComponent.includes(path))[0];
@@ -21,12 +22,8 @@ export default class GenerateTest extends Component {
                         <p className="test-description">{test.description}</p>
                     </Col>
                 </Row>
-                <Row>
-                    <Col xs="12">
-                        {/* TODO: Make this actually submit, probably having all the logic baked into the form itself */}
-                        <TestForm data={test.form} />
-                    </Col>
-                </Row>
+                {/* TODO: Make this actually submit, probably having all the logic baked into the form itself */}
+                <TestForm data={test.form} key={path} />
             </>
         )
     }
