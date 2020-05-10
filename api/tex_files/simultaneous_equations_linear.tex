@@ -3,14 +3,18 @@
 \pythontexcustomc[begin]{py}{from numpy import *; import random}
 
 \begin{pycode}
+import json
+
+with open('config.json') as json_file:
+    data = json.load(json_file)
+    number_of_questions = data['numberOfQuestions']
+
 # INSTRUCTIONS ARE AFTER # SYMBOL
 coeffs_range = [-8, 8] # <- this is the range of coefficients in questions
 
 generate_random_solutions = 1 # <- make this 0 to manually input answers
 
 answers_range = [-12, 12] # <- range of answers if automatically generated
-
-number_of_questions = 100 # <- number of questions if automatically generated
 
 if generate_random_solutions:
   x = [random.randint(answers_range[0], answers_range[1]) for i in range(number_of_questions)]

@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-*/pdf_tmp
+*/tmp/
 
 # production
 */build

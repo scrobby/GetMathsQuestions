@@ -1,11 +1,12 @@
 // Require what we need
-const latex = require('node-latex')
+const latex = require('../../node-latexmk')
 const fs = require('fs')
 var uniqid = require('uniqid')
 
 // Base folders
 const texFilesFolder = __dirname + '/tex_files'
-const pdfFilesFolder = __dirname + '/pdf_tmp'
+const pdfFilesFolder = __dirname + '/tmp/pdf'
+const tmpConfigFolder = __dirname + '/tmp/config'
 
 /** @description Generates a PDF document using the specified tex file and options
  * @param {string} texfile The name of the texfile to use
@@ -27,24 +28,34 @@ module.exports = (texfile, options, callback) => {
     const texPath = texFilesFolder + '/' + texfile
     const pdfPath = pdfFilesFolder + '/' + filename
 
-    let latexGenOptions = {
-        cmd: 'latexmk',
-        args: ['-pdf', '-g', '-f', '-bibtex', '-synctex=1', '-interaction=nonstopmode'],
-        passes: 2,
-        errorLogs: __dirname + '/errors.log'
-    }
+    const tmpConfigPath = tmpConfigFolder + '/' + uniqid() + '.json'
 
-    let latexGenOptions2 = {
-        args: ['-pdf', '-g', '-f', '-bibtex', '-synctex=1', '-interaction=nonstopmode'],
-        passes: 2,
-        errorLogs: __dirname + '/errors.log'
-    }
+    //TODO: MAKE THIS THE REAL OPTIONS
+    let testOptions = { numberOfQuestions: 20 }
 
-    const texPdf = latex(texPath, latexGenOptions2)
+    // write the options to a file ready to be passed through
+    fs.writeFile(tmpConfigPath, JSON.stringify(testOptions), 'utf8', (err) => {
+        if (err) {
+            console.log("This is where we fucked it")
+            callback(err)
+        } else {
+            console.log("Moving on")
+            let latexGenOptions = {
+                passes: 2,
+                dependencies: [tmpConfigPath],
+                dependencyRenames: { [tmpConfigPath.toString()] : "config.json" }
+            }
 
-    console.log("Path: " + pdfPath)
-
-    texPdf.pipe(fs.createWriteStream(pdfPath))
-    texPdf.on('error', err => callback(err, null))
-    texPdf.on('finish', () => callback(null, filename))
+            latex(texPath, pdfPath, latexGenOptions, (err, pdf) => {
+                if (err) {
+                    callback(err, null)
+                    console.log(err)
+                } else {
+                    console.log(JSON.stringify(pdf))
+                    callback(null, pdf)
+                }
+            })
+        }
+    })
 }
+
