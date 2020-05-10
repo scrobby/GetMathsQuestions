@@ -12,11 +12,6 @@ var cors = require('cors');
 // Get the port from the environment
 const port = process.env.API_PORT || 5050;
 
-mongoose.connect(mongoDB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-
 // Cors
 const whitelist = ['*'];
 app.use(cors({

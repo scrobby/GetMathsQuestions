@@ -1,10 +1,14 @@
-const express = require('express');
-const routes = express.Router();
+// Get the key bits
+const express = require('express')
+const routes = express.Router()
 
-
+// Now the custom routes
+const generate = require('./generate')
 
 routes.get('/', (req, res) => {
-    res.status(200).json({ message: 'Connected!' });
-});
+    res.status(200).json({ message: 'Connected!' })
+})
 
-module.exports = routes;
+routes.use('/generate/', generate);
+
+module.exports = routes

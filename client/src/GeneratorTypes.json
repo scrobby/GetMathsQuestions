@@ -1,7 +1,7 @@
 [
     {
        "name": "Linear Simultaneous Equations",
-       "pathComponent": "linearSimultaneousEquations",
+       "pathComponent": "linear-simultaneous-equations",
        "description": "Simultaneous equations with 2 linear unknowns (x, y).",
        "exampleImage": null,
        "form": {
@@ -47,7 +47,7 @@
     },
     {
        "name": "Factorising Quadratic Equations",
-       "pathComponent": "factorisingQuadraticEquations",
+       "pathComponent": "factorising-quadratic-equations",
        "description": "Quadratic expressions which can be factorised, with integer solutions for when the expression = zero.",
        "exampleImage": null,
        "form": {
