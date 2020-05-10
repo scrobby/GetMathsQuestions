@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{pythontex}
+\pythontexcustomc[begin]{py}{from numpy import *; import random}
+
+\begin{pycode}
+# INSTRUCTIONS ARE AFTER # SYMBOL
+coeffs_range = [-8, 8] # <- this is the range of coefficients in questions
+
+generate_random_solutions = 1 # <- make this 0 to manually input answers
+
+answers_range = [-12, 12] # <- range of answers if automatically generated
+
+number_of_questions = 100 # <- number of questions if automatically generated
+
+if generate_random_solutions:
+  x = [random.randint(answers_range[0], answers_range[1]) for i in range(number_of_questions)]
+  y = [random.randint(answers_range[0], answers_range[1]) for i in range(number_of_questions)]
+else:
+  x = [2, -1, 1, 6, -5, 2, -3, 10, -7, -4, -6] # if manual answers
+  y = [-3, 5, 5, -2, 9, 4, -6, 8, -20, 4, 1] # if manual answers
+
+\end{pycode}
+
+\begin{document}
+
+
+
+Solve for $x$, $y$:
+\newline
+
+\begin{pycode}
+
+for ieqn in range(len(x)):
+  coeffs = [random.randint(coeffs_range[0], coeffs_range[1]) for i in range(4)]
+  signs = [None] * len(coeffs)
+  for c in range(len(coeffs)):
+    if coeffs[c] < 0:
+      signs[c] = " - "
+    else:
+      signs[c] = " + "
+  ans1 = coeffs[0]*x[ieqn] + coeffs[1]*y[ieqn]
+  ans2 = coeffs[2]*x[ieqn] + coeffs[3]*y[ieqn]
+
+  print("\n" + str(ieqn+1) + ") ")
+
+  print(str(coeffs[0]) + r'\textit{x}' + signs[1] + str(abs(coeffs[1])) + r'\textit{y}' + " = " + str(ans1) + ",   ")
+
+  print(str(coeffs[2]) + r'\textit{x}' + signs[3] + str(abs(coeffs[3])) + r'\textit{y}' + " = " + str(ans2))
+
+  for i in range(7):
+    print(r'\textit{\newline}')
+
+# divide answers by coefficients 
+
+\end{pycode}
+
+\pagebreak
+
+Solutions:
+\newline
+
+\begin{pycode}
+for ieqn in range(len(x)):
+  print("\n" + str(ieqn+1) + ") ")
+  print(r'\textit{x}' + " = " + str(x[ieqn]) + ", ")
+  print(r'\textit{y}' + " = " + str(y[ieqn]))
+\end{pycode}
+
+
+\end{document}
