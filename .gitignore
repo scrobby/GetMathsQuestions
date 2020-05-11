@@ -20,6 +20,8 @@
 .env.production.local
 .env
 
+.vscode
+
 *.code-workspace
 *.log
 
