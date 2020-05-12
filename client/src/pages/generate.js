@@ -16,14 +16,18 @@ export default class GenerateTest extends Component {
 
         return (
             <>
-                <Row style={{ marginTop: "25px" }}>
+                <Row>
                     <Col xs="12">
                         <h1>{test.name}</h1>
                         <p className="test-description">{test.description}</p>
                     </Col>
                 </Row>
                 {/* TODO: Make this actually submit, probably having all the logic baked into the form itself */}
-                <TestForm data={test.form} key={path} />
+                <Row>
+                    <Col xs="12">
+                        <TestForm data={test.form} key={path} />
+                    </Col>
+                </Row>
             </>
         )
     }

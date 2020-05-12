@@ -1,62 +1,102 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    margin: 0;
+    font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* background-color: rgb(245, 245, 245); */
 }
 
 .cg-navbar {
-  background: #79B1E4;
-  color: #8059D1;
+    background-color: #79B1E4;
+    color: #8059D1;
 }
 
 .cg-navbar a.navbar-brand {
-  color: #8059D1;
+    color: #8059D1 !important;
 }
 
 h1 {
-  color: #8059D1;
+    color: #8059D1;
+    font-weight: bolder;
 }
 
 .card-header {
-  background-color: #D3E9FC !important;
+    background-color: #79B1E4 !important;
 }
 
 a.card-footer {
-  text-align: center;
-  transition: 0.3s;
+    text-align: center;
+    transition: 0.3s;
 }
 
 a.card-footer:hover {
-  text-decoration: none;
-  background-color: #DDD;
-  transition: 0.3s;
+    text-decoration: none;
+    background-color: #DDD;
+    transition: 0.3s;
 }
 
 .footer {
-  padding-bottom: 25px;
-  color: grey;
+    padding-bottom: 25px;
+    color: grey;
 }
 
 .footer-left {
-  text-align: left;
+    text-align: left;
 }
 
 .footer-right {
-  text-align: right;
+    text-align: right;
 }
 
 .footer p {
-  margin: 0px;
+    margin: 0px;
 }
 
 .test-description {
-  color: #666;
+    color: #666;
 }
+
+
+/* For size-dependent stuff */
+
+
+/* Extra small devices (phones, less than 768px) */
+
+
+/* No media query since this is the default in Bootstrap */
+.cg-footer {
+    text-align: left;
+}
+
+/* Small devices (tablets, 768px and up) */
+
+@media (min-width: 576px) {
+    .cg-footer {
+        text-align: right;
+    }
+}
+
+
+/* Medium devices (desktops, 992px and up) */
+
+@media (min-width: 768px) {
+    .nav-bar-container {
+        padding-left: 0em !important;
+        padding-right: 0em !important;
+    }
+}
+
+
+/* Large devices (large desktops, 1200px and up) */
+
+@media (min-width: 992px) {
+    .nav-bar-container {
+        padding-left: 1em !important;
+        padding-right: 1em !important;
+    }
+}
+
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {}

@@ -73,7 +73,7 @@ export class TestForm extends Component {
         return (
             <Form>
                 {this.renderForm()}
-                <hr/>
+                <br/>
                 <Button type="submit" className="float-right">Generate Questions</Button>
             </Form>
         )
