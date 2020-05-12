@@ -8,11 +8,11 @@ const pdflatex = require('../latex_pdf')
 const typesAndTexFiles = [
     {
         path: "linear-simultaneous-equations",
-        texFile: "simultaneous_equations_linear.tex"
+        texFile: "simultaneous_equations.tex"
     },
     {
         path: "factorising-quadratic-equations",
-        texFile: "quadratic_equations_factorising.tex"
+        texFile: "factorising_quadratics.tex"
     }
 ]
 
