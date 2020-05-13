@@ -9,8 +9,8 @@ export default class Home extends Component {
     render() {
         return (
             <>
-            < h1 > Get Maths Questions</h1 >
-            <p>Here's the scenario: you're bored in lockdown with nothing to do. How on earth are goin going to entertain yourself? Easy: you give yourself an endless supply of maths questions to answer, that's how.</p>
+            <h1>Get Maths Questions</h1 >
+            <p>This is a work in progress and will not function at all.</p>
             </>
         )
     }
