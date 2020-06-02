@@ -1,5 +1,5 @@
 // Require what we need
-const latex = require('../../node-latexmk')
+const latex = require('node-latexmk')
 const fs = require('fs')
 var uniqid = require('uniqid')
 
