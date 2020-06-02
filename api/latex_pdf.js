@@ -44,13 +44,16 @@ module.exports = (texfile, options, callback) => {
             mkdirp.sync(tmpConfigFolder);
         }
 
+        if (!fs.existsSync(pdfFilesFolder)){
+            mkdirp.sync(pdfFilesFolder);
+        }
+
         // write the options to a file ready to be passed through
         fs.writeFile(tmpConfigPath, JSON.stringify(texOptions), 'utf8', (err) => {
             if (err) {
                 console.log("This is where I fucked it: " + err)
                 callback(err)
             } else {
-                console.log("Moving on")
                 let latexGenOptions = {
                     passes: 2,
                     dependencies: [tmpConfigPath],

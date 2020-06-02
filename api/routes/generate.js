@@ -4,6 +4,11 @@ const generator = require('express').Router()
 // Get the pdf generator
 const pdflatex = require('../latex_pdf')
 
+// Set up AWS
+const s3 = new require('aws-sdk').s3({apiVersion: '2006-03-01'})
+const awsBucket = 'getmathsquestions.co.uk'
+const awsFolder = 'pdfs'
+
 // TODO: Make this better and more reliable than just chucking it into an object
 const typesAndTexFiles = [
     {
@@ -42,6 +47,7 @@ generator.get('/:type?', (req, res) => {
             if (err) {
                 res.status(500).json({ message: "A server error occurred", error: JSON.stringify(err) })
             } else {
+                
                 res.status(200).json({ message: "A PDF was generated!", pdfLocation: pdf })
             }
         })
