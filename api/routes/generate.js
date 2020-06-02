@@ -6,6 +6,7 @@ const pdflatex = require('../latex_pdf')
 
 // Set up AWS and files
 const fs = require('fs')
+const path = require('path')
 const AWS = require('aws-sdk')
 const s3 = new AWS.S3({
     apiVersion: '2006-03-01',
@@ -58,19 +59,18 @@ generator.get('/:type?', (req, res) => {
                         res.status(500).json({ message: "A server error occurred", error: err})
                     } else {
                         const params = {
-                            Bucket: awsBucket, // pass your bucket name
-                            Key: "testPDF.pdf", // file will be saved as testBucket/contacts.csv
-                            Body: data
+                            Bucket: awsBucket,
+                            Key: 'pdfs/' + path.basename(pdf),
+                            Body: data,
+                            ContentType: 'application/pdf'
                         };
-
-                        console.log("Params: " + JSON.stringify(params.Bucket))
 
                         s3.upload(params, function (s3err, data) {
                             if (s3err) {
                                 res.status(500).json({ message: "A server error occurred", error: s3err})
                             } else {
-                                console.log(`File uploaded successfully at ${data.Location}`)
-                                res.status(200).json({ message: "A PDF was generated!", pdfLocation: data.Location })
+                                let finalURL = 'https://' + awsBucket + data.Location.split(awsBucket)[1] 
+                                res.status(200).json({ message: "A PDF was generated!", pdfLocation: finalURL })
                             }
                         });
                     }
