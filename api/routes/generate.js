@@ -21,6 +21,7 @@ generator.get('/', (req, res) => {
 });
 
 generator.get('/:type?', (req, res) => {
+    console.log("here")
     const type = req.params.type
     const texOptions = req.body
 
@@ -47,6 +48,7 @@ generator.get('/:type?', (req, res) => {
     } else {
         res.status(400).json({ message: "Unknown generator type", requestedType: type });
     }
+    
 });
 
 module.exports = generator
