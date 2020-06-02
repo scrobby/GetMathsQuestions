@@ -1,6 +1,7 @@
 // Require what we need
 const latex = require('node-latexmk')
 const fs = require('fs')
+const mkdirp = require('mkdirp')
 var uniqid = require('uniqid')
 
 // Base folders
@@ -31,31 +32,41 @@ module.exports = (texfile, options, callback) => {
     const tmpConfigPath = tmpConfigFolder + '/' + uniqid() + '.json'
 
     //TODO: MAKE THIS THE REAL OPTIONS
-    let testOptions = { numberOfQuestions: 20 }
+    if (!options.texparams) {
+        let error = new Error("No tex parameters provided. Cannot generate LaTeX file")
+        callback(error, null)
+    } else {
+        let texOptions = options.texparams
 
-    // write the options to a file ready to be passed through
-    fs.writeFile(tmpConfigPath, JSON.stringify(testOptions), 'utf8', (err) => {
-        if (err) {
-            console.log("This is where we fucked it")
-            callback(err)
-        } else {
-            console.log("Moving on")
-            let latexGenOptions = {
-                passes: 2,
-                dependencies: [tmpConfigPath],
-                dependencyRenames: { [tmpConfigPath.toString()] : "config.json" }
-            }
-
-            latex(texPath, pdfPath, latexGenOptions, (err, pdf) => {
-                if (err) {
-                    callback(err, null)
-                    console.log(err)
-                } else {
-                    console.log(JSON.stringify(pdf))
-                    callback(null, pdf)
-                }
-            })
+        //TODO: Maybe in future do something better here with fs.access() or fs.stat()
+        //make sure our temp directory exists - I'm okay with this being synchronous as the creation of the directory should only ever happen once
+        if (!fs.existsSync(tmpConfigFolder)){
+            mkdirp.sync(tmpConfigFolder);
         }
-    })
-}
 
+        // write the options to a file ready to be passed through
+        fs.writeFile(tmpConfigPath, JSON.stringify(texOptions), 'utf8', (err) => {
+            if (err) {
+                console.log("This is where I fucked it: " + err)
+                callback(err)
+            } else {
+                console.log("Moving on")
+                let latexGenOptions = {
+                    passes: 2,
+                    dependencies: [tmpConfigPath],
+                    dependencyRenames: { [tmpConfigPath.toString()]: "config.json" }
+                }
+
+                latex(texPath, pdfPath, latexGenOptions, (err, pdf) => {
+                    if (err) {
+                        callback(err, null)
+                        console.log(err)
+                    } else {
+                        console.log(JSON.stringify(pdf))
+                        callback(null, pdf)
+                    }
+                })
+            }
+        })
+    }
+}
