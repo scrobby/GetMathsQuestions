@@ -31,12 +31,20 @@ module.exports = (texfile, options, callback) => {
 
     const tmpConfigPath = tmpConfigFolder + '/' + uniqid() + '.json'
 
-    //TODO: MAKE THIS THE REAL OPTIONS
     if (!options.texparams) {
         let error = new Error("No tex parameters provided. Cannot generate LaTeX file")
         callback(error, null)
     } else {
-        let texOptions = options.texparams
+        var texOptions = options.texparams
+
+        // Make sure the numbers are actually stringified as numbers
+        for (const [key, value] of Object.entries(texOptions)) {
+            let valAsNum = Number(value)
+
+            if (!Number.isNaN(valAsNum)) {
+                texOptions[key] = valAsNum
+            }
+        }
 
         //TODO: Maybe in future do something better here with fs.access() or fs.stat()
         //make sure our temp directory exists - I'm okay with this being synchronous as the creation of the directory should only ever happen once
@@ -56,6 +64,7 @@ module.exports = (texfile, options, callback) => {
             } else {
                 let latexGenOptions = {
                     passes: 2,
+                    args: ['bibtex', 'synctex=1'],
                     dependencies: [tmpConfigPath],
                     dependencyRenames: { [tmpConfigPath.toString()]: "config.json" }
                 }
@@ -68,6 +77,9 @@ module.exports = (texfile, options, callback) => {
                         console.log(JSON.stringify(pdf))
                         callback(null, pdf)
                     }
+
+                    //once we're done, clean up the config folder
+                    fs.unlink(tmpConfigPath, ()=>{})
                 })
             }
         })

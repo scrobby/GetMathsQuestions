@@ -35,7 +35,7 @@ generator.get('/', (req, res) => {
 generator.get('/:type?', (req, res) => {
     console.log("here")
     const type = req.params.type
-    const texOptions = req.body
+    const texOptions = req.query
 
     console.log("Type: " + type)
     console.log("Options: " + JSON.stringify(texOptions))
@@ -70,8 +70,11 @@ generator.get('/:type?', (req, res) => {
                                 res.status(500).json({ message: "A server error occurred", error: s3err})
                             } else {
                                 let finalURL = 'https://' + awsBucket + data.Location.split(awsBucket)[1] 
-                                res.status(200).json({ message: "A PDF was generated!", pdfLocation: finalURL })
+                                res.status(200).json({ message: "Worksheet generated!", pdfLocation: finalURL })
                             }
+
+                            //Either way, clean up the PDF once it's been/tried to be uploaded
+                            fs.unlink(pdf, () => {})
                         });
                     }
                 })
