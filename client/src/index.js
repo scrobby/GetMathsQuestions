@@ -60,7 +60,7 @@ ReactDOM.render(
     <Router>
       <Navigation generatorTypes={generatorTypes} />
       <Container fluid="md">
-            <Routing />
+        <Routing />
         <Footer />
       </Container>
     </Router>
