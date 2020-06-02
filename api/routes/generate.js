@@ -4,9 +4,15 @@ const generator = require('express').Router()
 // Get the pdf generator
 const pdflatex = require('../latex_pdf')
 
-// Set up AWS
-const s3 = new require('aws-sdk').s3({apiVersion: '2006-03-01'})
-const awsBucket = 'getmathsquestions.co.uk'
+// Set up AWS and files
+const fs = require('fs')
+const AWS = require('aws-sdk')
+const s3 = new AWS.S3({
+    apiVersion: '2006-03-01',
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+})
+const awsBucket = 'getmathsquestions.com'
 const awsFolder = 'pdfs'
 
 // TODO: Make this better and more reliable than just chucking it into an object
@@ -47,14 +53,34 @@ generator.get('/:type?', (req, res) => {
             if (err) {
                 res.status(500).json({ message: "A server error occurred", error: JSON.stringify(err) })
             } else {
-                
-                res.status(200).json({ message: "A PDF was generated!", pdfLocation: pdf })
+                fs.readFile(pdf, (err, data) => {
+                    if (err) {
+                        res.status(500).json({ message: "A server error occurred", error: err})
+                    } else {
+                        const params = {
+                            Bucket: awsBucket, // pass your bucket name
+                            Key: "testPDF.pdf", // file will be saved as testBucket/contacts.csv
+                            Body: data
+                        };
+
+                        console.log("Params: " + JSON.stringify(params.Bucket))
+
+                        s3.upload(params, function (s3err, data) {
+                            if (s3err) {
+                                res.status(500).json({ message: "A server error occurred", error: s3err})
+                            } else {
+                                console.log(`File uploaded successfully at ${data.Location}`)
+                                res.status(200).json({ message: "A PDF was generated!", pdfLocation: data.Location })
+                            }
+                        });
+                    }
+                })
             }
         })
     } else {
         res.status(400).json({ message: "Unknown generator type", requestedType: type });
     }
-    
+
 });
 
 module.exports = generator
