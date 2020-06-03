@@ -61,7 +61,6 @@ ReactDOM.render(
         <div style={{ marginTop: "20px" }}>
           <Routing />
         </div>
->>>>>>> master
         <Footer />
       </Container>
     </Router>
