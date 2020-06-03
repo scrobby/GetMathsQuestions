@@ -1,4 +1,4 @@
-# Automatic Maths Questions Generator (AutoMQG)
+# Get Maths Questions
 A work in progress by [@scrobby] and [@morganemoss]
 
 [@scrobby]: http://github.com/scrobby

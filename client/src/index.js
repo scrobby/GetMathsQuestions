@@ -6,7 +6,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 // Get our top level views
 import Home from './pages/home';
-import About from './pages/about';
 import AllTests from './pages/alltests';
 import GenerateTest from './pages/generate'
 import NotFound from './pages/notfound';
@@ -15,8 +14,8 @@ import NotFound from './pages/notfound';
 import Navigation from './components/navigation';
 
 // Get other assets for styling etc
-import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 // TODO: Make this much more reliable
 import generatorTypes from './GeneratorTypes.json'
@@ -26,7 +25,6 @@ function Routing() {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/generate/" component={(props) => <AllTests {...props} generatorTypes={generatorTypes} />} />
-      <Route path="/about" component={About} />
       {/* TODO: Make this a super smart way of rendering out the tests depending on type */}
       <Route path="/generate/:id" component={(props) => <GenerateTest {...props} generatorTypes={generatorTypes} />} />
       <Route component={NotFound} />
@@ -35,6 +33,7 @@ function Routing() {
 }
 
 function Footer() {
+
   return (
     <>
       <Row>
@@ -43,12 +42,11 @@ function Footer() {
         </Col>
       </Row>
       <Row className="footer">
-        <Col md="6" sm="12">
-          <p>Created by <a href="https://twitter.com/scrobby" target="_blank">@scrobby</a> and <a href="https://twitter.com/morganemoss" target="_blank">@morganemoss</a></p>
-          <p>Presumably we put something else here?</p>
+        <Col sm="6" xs="12">
+          <p>Created by <a href="https://twitter.com/morganemoss" target="_blank" rel="noopener noreferrer">@morganemoss</a> and <a href="https://twitter.com/scrobby" target="_blank" rel="noopener noreferrer">@scrobby</a></p>
         </Col>
-        <Col md="6" sm="12" style={{ textAlign: "right" }}>
-          <p>And content on the other side?</p>
+        <Col sm="6" xs="12" className="cg-footer">
+          <p><a href="/feedback">Request a new question type</a></p>
         </Col>
       </Row>
     </>
@@ -60,7 +58,10 @@ ReactDOM.render(
     <Router>
       <Navigation generatorTypes={generatorTypes} />
       <Container fluid="md">
-        <Routing />
+        <div style={{ marginTop: "20px" }}>
+          <Routing />
+        </div>
+>>>>>>> master
         <Footer />
       </Container>
     </Router>
