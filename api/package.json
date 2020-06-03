@@ -5,16 +5,18 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devStart": "nodemon --ignore 'tmp/'"
+    "start": "nodemon --ignore 'tmp/*'"
   },
   "author": "Carl Goldsmith",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.687.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "node-latexmk": "^0.0.2",
+    "mkdirp": "^1.0.4",
+    "node-latexmk": "^0.1.4",
     "uniqid": "^5.2.0"
   }
 }

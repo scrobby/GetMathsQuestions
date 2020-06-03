@@ -9,6 +9,6 @@ routes.get('/', (req, res) => {
     res.status(200).json({ message: 'Connected!' })
 })
 
-routes.use('/generate/', generate);
+routes.use('/generate/', generate)
 
 module.exports = routes
