@@ -60,7 +60,7 @@ export class TestForm extends Component {
 
         const getUrl = API_BASE + 'generate/' + this.props.path
 
-        console.log("Base: "+ API_BASE) 
+        console.log("Base: " + API_BASE)
 
         var paramsToSubmit = {}
 
@@ -68,7 +68,13 @@ export class TestForm extends Component {
             if (!key.includes('isLoading')
                 && !key.includes('message')
                 && !key.includes('pdfUrl')) {
-                paramsToSubmit[key] = this.state[key]
+                if (typeof(this.state[key]) === 'object') {
+                    Object.keys(this.state[key]).forEach((key2) => {
+                        paramsToSubmit[key + '_' + key2] = this.state[key][key2]
+                    })
+                } else {
+                    paramsToSubmit[key] = this.state[key]
+                }
             }
         })
 
@@ -128,7 +134,7 @@ export class TestForm extends Component {
                 {this.renderForm()}
                 <br />
                 <Row>
-                    <Col lg={{span: 6, order: 0}} sm={{ span: 12, order: 2 }} id="message-column" className={this.state.message == null ? "hide" : "show"}>
+                    <Col lg={{ span: 6, order: 0 }} sm={{ span: 12, order: 2 }} id="message-column" className={this.state.message == null ? "hide" : "show"}>
                         <Alert
                             className={"generate-message"}
                             style={{ padding: "7px", color: "#666" }}
@@ -136,7 +142,7 @@ export class TestForm extends Component {
                             {this.state.message}
                         </Alert>
                     </Col>
-                    <Col lg={{span: 3, order: 1}} sm={{ span: 12, order: 1 }} id="download-column" className={this.state.pdfUrl == null ? "hide" : "show"}>
+                    <Col lg={{ span: 3, order: 1 }} sm={{ span: 12, order: 1 }} id="download-column" className={this.state.pdfUrl == null ? "hide" : "show"}>
                         <Button
                             href={this.state.pdfUrl}
                             className="generate-button float-left"
@@ -145,7 +151,7 @@ export class TestForm extends Component {
                             Download PDF
                         </Button>
                     </Col>
-                    <Col lg={{span: 3, order: 2}} sm={{ span: 12, order: 0 }}>
+                    <Col lg={{ span: 3, order: 2 }} sm={{ span: 12, order: 0 }}>
                         <Button
                             type="submit"
                             className="generate-button float-right"
