@@ -68,6 +68,42 @@ a.card-footer:hover {
     text-align: left;
 }
 
+.generate-button {
+    margin-top: 0.5em;
+    width: 100%
+}
+
+.generate-message {
+    text-align: center;
+    margin-top: 0.5em;
+    width: 100%;
+    overflow: hidden;
+}
+
+#download-column.hide {
+    max-height: 0px;
+    transition: max-height 0.15s ease-in;
+    overflow: hidden;
+}
+
+#download-column.show {
+    max-height: 50px;
+    transition: max-height 0.25s ease-in;
+    overflow: hidden;
+}
+
+#message-column.hide {
+    max-height: 0px;
+    transition: max-height 0.15s ease-in;
+    overflow: hidden;
+}
+
+#message-column.show {
+    max-height: 50px;
+    transition: max-height 0.25s ease-in;
+    overflow: hidden;
+}
+
 /* Small devices (tablets, 768px and up) */
 
 @media (min-width: 576px) {
@@ -93,6 +129,15 @@ a.card-footer:hover {
     .nav-bar-container {
         padding-left: 1em !important;
         padding-right: 1em !important;
+    }
+
+    .generate-button {
+        margin-top: 0px;
+    }
+
+    .generate-message {
+        text-align: left;
+        margin-top: 0px;
     }
 }
 

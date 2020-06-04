@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Row, Col, Button} from 'react-bootstrap';
+import { Form, Row, Col, Button, Spinner, Alert } from 'react-bootstrap';
+import axios from 'axios'
+
+const API_BASE = process.env.REACT_APP_API_BASE;
 
 export class TestForm extends Component {
     constructor(props) {
@@ -10,6 +13,7 @@ export class TestForm extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.renderForm = this.renderForm.bind(this);
         this.getNewState = this.getNewState.bind(this);
+        this.onRequestTest = this.onRequestTest.bind(this);
     }
 
     handleChange(e, type) {
@@ -44,6 +48,44 @@ export class TestForm extends Component {
         }
     }
 
+    onRequestTest(e) {
+        e.preventDefault()
+
+        this.setState({
+            isLoading: true,
+            message: null,
+            messageType: 'light',
+            pdfUrl: null
+        })
+
+        const getUrl = API_BASE + 'generate/' + this.props.path
+
+        var paramsToSubmit = {}
+
+        Object.keys(this.state).forEach((key) => {
+            if (!key.includes('isLoading')
+                && !key.includes('message')
+                && !key.includes('pdfUrl')) {
+                paramsToSubmit[key] = this.state[key]
+            }
+        })
+
+        axios.get(getUrl, { params: paramsToSubmit })
+            .then((res) => {
+                this.setState({
+                    isLoading: false,
+                    pdfUrl: res.data.pdfLocation
+                })
+            })
+            .catch((err) => {
+                this.setState({
+                    isLoading: false,
+                    message: "An unexpected error occurred. Please try again later.",
+                    messageType: 'danger'
+                })
+            })
+    }
+
     getNewState(props) {
         var newState = {};
 
@@ -66,15 +108,54 @@ export class TestForm extends Component {
             }
         }
 
+        newState.isLoading = false
+        newState.message = null
+        newState.messageType = 'light'
+        newState.pdfUrl = null
+
         return newState
     }
 
     render() {
         return (
-            <Form>
+            <Form onSubmit={this.onRequestTest}>
                 {this.renderForm()}
-                <br/>
-                <Button type="submit" className="float-right">Generate Questions</Button>
+                <br />
+                <Row>
+                    <Col lg={{span: 6, order: 0}} sm={{ span: 12, order: 2 }} id="message-column" className={this.state.message == null ? "hide" : "show"}>
+                        <Alert
+                            className={"generate-message"}
+                            style={{ padding: "7px", color: "#666" }}
+                            variant={this.state.messageType}>
+                            {this.state.message}
+                        </Alert>
+                    </Col>
+                    <Col lg={{span: 3, order: 1}} sm={{ span: 12, order: 1 }} id="download-column" className={this.state.pdfUrl == null ? "hide" : "show"}>
+                        <Button
+                            href={this.state.pdfUrl}
+                            className="generate-button float-left"
+                            target="_blank"
+                            variant="success">
+                            Download PDF
+                        </Button>
+                    </Col>
+                    <Col lg={{span: 3, order: 2}} sm={{ span: 12, order: 0 }}>
+                        <Button
+                            type="submit"
+                            className="generate-button float-right"
+                            disabled={this.state.isLoading}>
+                            Generate Questions
+                        <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                                style={{ marginLeft: "0.5em" }}
+                                hidden={!this.state.isLoading} />
+                        </Button>
+                    </Col>
+                </Row>
             </Form>
         )
     }
