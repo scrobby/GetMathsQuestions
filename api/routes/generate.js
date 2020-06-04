@@ -33,14 +33,10 @@ generator.get('/', (req, res) => {
 });
 
 generator.get('/:type?', (req, res) => {
-    console.log("here")
     const type = req.params.type
     const texOptions = req.query
 
-    console.log("Type: " + type)
-    console.log("Options: " + JSON.stringify(texOptions))
-
-    let matchedTypes = typesAndTexFiles.filter((a) => a.path.includes(type));
+    let matchedTypes = typesAndTexFiles.filter((a) => a.path.includes(type))
 
     if (matchedTypes.length > 0) {
         let genType = matchedTypes[0]
@@ -81,7 +77,11 @@ generator.get('/:type?', (req, res) => {
             }
         })
     } else {
-        res.status(400).json({ message: "Unknown generator type", requestedType: type });
+        if (type.includes('debugg')) {
+            res.status(200).json(req.hostname)
+        } else {
+            res.status(400).json({ message: "Unknown generator type", requestedType: type });
+        }   
     }
 
 });

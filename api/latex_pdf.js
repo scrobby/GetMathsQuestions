@@ -59,7 +59,7 @@ module.exports = (texfile, options, callback) => {
         // write the options to a file ready to be passed through
         fs.writeFile(tmpConfigPath, JSON.stringify(texOptions), 'utf8', (err) => {
             if (err) {
-                console.log("This is where I fucked it: " + err)
+                console.log("Error " + err)
                 callback(err)
             } else {
                 let latexGenOptions = {
@@ -74,7 +74,6 @@ module.exports = (texfile, options, callback) => {
                         callback(err, null)
                         console.log(err)
                     } else {
-                        console.log(JSON.stringify(pdf))
                         callback(null, pdf)
                     }
 
