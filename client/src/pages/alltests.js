@@ -17,7 +17,7 @@ export default class AllTests extends Component {
                                 <Col xl="3" lg="4" md="6" sm="6" xs="12" key={type.pathComponent}>
                                     <Card style={{ marginTop: "25px" }}>
                                         <Card.Header>
-                                            <b>{type.name}</b>
+                                            <span style={{color: "#FFF", fontWeight: "600"}}>{type.name}</span>
                                         </Card.Header>
                                         {/* TODO: MAKE THIS AN IMAGE */}
                                         <Card.Img variant="top" height="150px" style={{ backgroundColor: "lightGray" }} />
