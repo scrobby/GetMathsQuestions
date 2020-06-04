@@ -20,12 +20,12 @@ coeffs_range = [0, 0]
 with open('config.json') as json_file:
   data = json.load(json_file)
   number_of_questions = data['numberOfQuestions']
-  answers_range[0] = data['answersBetween']['low']
-  answers_range[1] = data['answersBetween']['high']
-  coeffs_range[0] = data['x2coefficientsBetween']['low']
-  coeffs_range[1] = data['x2coefficientsBetween']['high']
-  equals_range[0] = data['xcoefficientsBetween']['low']
-  equals_range[1] = data['xcoefficientsBetween']['high']
+  answers_range[0] = data['answersBetween_low']
+  answers_range[1] = data['answersBetween_high']
+  coeffs_range[0] = data['x2coefficientsBetween_low']
+  coeffs_range[1] = data['x2coefficientsBetween_high']
+  equals_range[0] = data['xcoefficientsBetween_low']
+  equals_range[1] = data['xcoefficientsBetween_high']
 
 
 a = [random.choice(coeffs_range) for i in range(number_of_questions)]
