@@ -22,8 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "aws s3 sync build/ s3://getmathsquestions.com --profile getmq"
+    "predeploy": "REACT_APP_API_BASE=https://api.getmathsquestions.com/ npm run build",
+    "deploy": "aws s3 sync build/ s3://getmathsquestions.com"
   },
   "eslintConfig": {
     "extends": "react-app"
