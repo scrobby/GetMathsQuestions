@@ -72,6 +72,8 @@ export class TestForm extends Component {
             }
         })
 
+        console.log("Params", paramsToSubmit)
+
         axios.get(getUrl, { params: paramsToSubmit })
             .then((res) => {
                 this.setState({
