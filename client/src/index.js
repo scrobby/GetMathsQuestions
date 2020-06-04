@@ -46,7 +46,7 @@ function Footer() {
           <p>Created by <a href="https://twitter.com/morganemoss" target="_blank" rel="noopener noreferrer">@morganemoss</a> and <a href="https://twitter.com/scrobby" target="_blank" rel="noopener noreferrer">@scrobby</a></p>
         </Col>
         <Col sm="6" xs="12" className="cg-footer">
-          <p><a href="/feedback">Request a new question type</a></p>
+          <p><a href="mailto:feedback@getmathsquestions.com">Request a new question type</a></p>
         </Col>
       </Row>
     </>
