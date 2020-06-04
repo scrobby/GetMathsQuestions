@@ -60,6 +60,8 @@ export class TestForm extends Component {
 
         const getUrl = API_BASE + 'generate/' + this.props.path
 
+        console.log("Base: "+ API_BASE) 
+
         var paramsToSubmit = {}
 
         Object.keys(this.state).forEach((key) => {
@@ -78,6 +80,8 @@ export class TestForm extends Component {
                 })
             })
             .catch((err) => {
+                console.log("Error", err.res)
+
                 this.setState({
                     isLoading: false,
                     message: "An unexpected error occurred. Please try again later.",
