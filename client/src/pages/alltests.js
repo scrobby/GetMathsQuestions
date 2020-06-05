@@ -6,21 +6,24 @@ import { Link } from 'react-router-dom';
 // TODO: make this actually generate a test using the API
 
 export default class AllTests extends Component {
+
     render() {
+
         return (
             <>
                 <h1>All Question Types</h1>
                 <Row>
                     {
                         this.props.generatorTypes.map((type) => {
+                            let bgImg = "/equation-img/" + type.pathComponent + ".png"
+                            
                             return (
                                 <Col xl="3" lg="4" md="6" sm="6" xs="12" key={type.pathComponent}>
                                     <Card style={{ marginTop: "25px" }}>
                                         <Card.Header>
                                             <span style={{color: "#FFF", fontWeight: "600"}}>{type.name}</span>
                                         </Card.Header>
-                                        {/* TODO: MAKE THIS AN IMAGE */}
-                                        <Card.Img variant="top" height="150px" style={{ backgroundColor: "lightGray" }} />
+                                        <Card.Img variant="top" height="150px" style={{ backgroundColor: "white", backgroundSize: "contain", backgroundImage: bgImg}} />
                                         <Card.Body>
                                             {type.description}
                                         </Card.Body>
