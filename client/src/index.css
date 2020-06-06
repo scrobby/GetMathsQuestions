@@ -56,6 +56,17 @@ a.card-footer:hover {
     color: #666;
 }
 
+.btn-primary {
+    background-color: #79B1E4 !important;
+    border-color: #79B1E4 !important;
+    transition: filter 0.3s;
+}
+
+.btn-primary:hover {
+    filter: brightness(90%);
+    transition: filter 0.3s;
+}
+
 
 /* For size-dependent stuff */
 

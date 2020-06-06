@@ -1,0 +1,44 @@
+[
+    {
+        "text": "If the solution to a problem is easy to check for correctness, must the problem be easy to solve?",
+        "link": {
+            "url": "https://en.wikipedia.org/wiki/P_versus_NP_problem",
+            "title": "Read more about the P versus NP problem"
+        }
+    },
+    {
+        "text": "Here is a super concise way of asking someone about the Hodge conjecture",
+        "link": {
+            "url": "https://en.wikipedia.org/wiki/Hodge_conjecture",
+            "title": "Read more about the Hodge conjecture"
+        }
+    },
+    {
+        "text": "Tell me how to solve the Riemann hypothesis",
+        "link": {
+            "url": "https://en.wikipedia.org/wiki/Riemann_hypothesis",
+            "title": "Read more about the Riemann hypothesis"
+        }
+    },
+    {
+        "text": "This is where we ask someone how they would go about solving the Yang-Mills existence and mass gap problem. Maybe someone will manage it!",
+        "link": {
+            "url": "https://en.wikipedia.org/wiki/Yang–Mills_existence_and_mass_gap",
+            "title": "Read more about the Yang-Mills existence and mass gap problem"
+        }
+    },
+    {
+        "text": "Can we add something in our terms and conditions that means if someone solves the problem after seeing it on our site, they have to give us a cut of the profits?",
+        "link": {
+            "url": "https://en.wikipedia.org/wiki/Navier–Stokes_existence_and_smoothness",
+            "title": "Read more about the Navier-Stokes existence and smoothness problem"
+        }
+    },
+    {
+        "text": "This will be a nice short way of asking someone about the Birch and Swinnerton-Dyer conjecture. How would you solve it?",
+        "link": {
+            "url": "https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture",
+            "title": "Read more about the Birch and Swinnerton-Dyer conjecture"
+        }
+    }
+]
