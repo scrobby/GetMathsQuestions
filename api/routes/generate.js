@@ -25,6 +25,10 @@ const typesAndTexFiles = [
     {
         path: "factorising-quadratic-equations",
         texFile: "factorising_quadratics.tex"
+    },
+    {
+        path: "factorising-quadratic-equations-fractions",
+        texFile: "factorising_quadratics_fractions.tex"
     }
 ]
 
