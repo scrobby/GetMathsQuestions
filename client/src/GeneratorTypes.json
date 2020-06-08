@@ -73,36 +73,25 @@
                 "max": null
              }
           },
-          "x2coefficientsBetween": {
+          "x2coeffs": {
              "label": "Coefficient of x^2 range:",
-             "type": "range",
-             "low": {
-                "default": 1,
-                "help": "Lowest possible coefficient (must be more than X)",
-                "min": null,
-                "max": null
-             },
-             "high": {
-                "default": 999,
-                "help": "Highest possible coefficient (must be less than X)",
-                "min": null,
-                "max": null
-             }
-          },
-          "xcoefficientsBetween": {
-             "label": "Coefficient of x range:",
-             "type": "range",
-             "low": {
-                "default": 1,
-                "help": "Lowest possible coefficient (must be more than X)",
-                "min": null,
-                "max": null
-             },
-             "high": {
-                "default": 500,
-                "help": "Highest possible coefficient (must be less than X)",
-                "min": null,
-                "max": null
+             "type": "multiple-checks",
+             "options" : {
+               "include1" : {
+                  "type" : "checkbox",
+                  "label" : "1",
+                  "default" : true
+               },
+               "include2" : {
+                  "type" : "checkbox",
+                  "label" : "2",
+                  "default" : false
+               },
+               "include3" : {
+                  "type" : "checkbox",
+                  "label" : "3",
+                  "default" : true
+               }
              }
           }
        }

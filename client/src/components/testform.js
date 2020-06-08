@@ -34,17 +34,41 @@ export class TestForm extends Component {
                 let targetKey = e.target.name.substr(0, pos)
                 let targetType = e.target.name.substr(pos + 1, e.target.name.length - 1);
 
-                var newRange = this.state[targetKey]
+                var newValue = this.state[targetKey]
 
-                newRange[targetType] = e.target.value;
+                newValue[targetType] = e.target.value;
 
                 this.setState({
-                    [targetKey]: newRange
+                    [targetKey]: newValue
                 })
 
-                break;
+                break
+            case "multiple-checks":
+                let posi = e.target.name.lastIndexOf('-');
+
+                console.log("Name: " + e.target.name)
+
+                let targetParent = e.target.name.substr(0, posi)
+
+                console.log("Parent: " + targetParent)
+                
+                let targetChild = e.target.name.substr(posi + 1, e.target.name.length - 1);
+
+                console.log("Child: " + targetChild)
+                
+                var newChecks = this.state[targetParent]
+
+                console.log("Checks: ", newChecks)
+                
+                newChecks[targetChild] = e.target.checked
+
+                this.setState({
+                    [targetParent]: newChecks
+                })
+
+                break
             default:
-                break;
+                break
         }
     }
 
@@ -66,7 +90,7 @@ export class TestForm extends Component {
             if (!key.includes('isLoading')
                 && !key.includes('message')
                 && !key.includes('pdfUrl')) {
-                if (typeof(this.state[key]) === 'object') {
+                if (typeof (this.state[key]) === 'object') {
                     Object.keys(this.state[key]).forEach((key2) => {
                         paramsToSubmit[key + '_' + key2] = this.state[key][key2]
                     })
@@ -99,18 +123,27 @@ export class TestForm extends Component {
             switch (value.type) {
                 case "checkbox":
                     newState[key] = value.default ? value.default : false;
-                    break;
+                    break
                 case "integer":
                     newState[key] = value.default ? value.default : 0;
-                    break;
+                    break
                 case "range":
                     newState[key] = {
                         low: value.low.default ? value.low.default : 0,
                         high: value.high.default ? value.high.default : 0
                     } // make sure to update this as a whole, not just individually
-                    break;
+                    break
+                case "multiple-checks":
+                    var multiChecks = {}
+
+                    for (const [key, val] of Object.entries(value.options)) {
+                        multiChecks[key] = val.default ? val.default : false
+                    }
+
+                    newState[key] = multiChecks
+                    break
                 default:
-                    break;
+                    break
             }
         }
 
@@ -118,6 +151,8 @@ export class TestForm extends Component {
         newState.message = null
         newState.messageType = 'light'
         newState.pdfUrl = null
+
+        console.log(newState)
 
         return newState
     }
@@ -192,15 +227,18 @@ function TestFormItem(props) {
     switch (props.type) {
         case "checkbox":
             item = TestFormCheckbox(props);
-            break;
+            break
         case "integer":
             item = TestFormInteger(props);
-            break;
+            break
         case "range":
             item = TestFormRange(props);
-            break;
+            break
+        case "multiple-checks":
+            item = TestFormMultiChecks(props)
+            break
         default:
-            break;
+            break
     }
 
     return (
@@ -271,5 +309,49 @@ function TestFormRange(props) {
                 />
             </Col>
         </>
+    )
+}
+
+function TestFormMultiChecks(props) {
+    var checkboxes = []
+
+    console.log("State data", props.stateData)
+
+    for (const [key] of Object.entries(props.stateData)) {
+        let params = {
+            sm: 2,
+            xs: 2,
+            onChange: props.onChange,
+            name: props.name + "-" + key,
+            stateData: props.stateData[key],
+            itemLabel: props.label
+        }
+
+        checkboxes.push(params)
+    }
+
+    return (
+        <>
+            <Form.Label as={Col} sm="4" xs="8">{props.testData.label}</Form.Label>
+
+            {checkboxes.map((item) => {
+                return RenderMultiChecks(item)
+            })}
+        </>
+    )
+}
+
+function RenderMultiChecks(checkParams) {
+    console.log("Name: " + JSON.stringify(checkParams.stateData))
+
+    return (
+        <Col sm={checkParams.sm} xs={checkParams.xs} key={checkParams.name}>
+            <Form.Check
+                style={{ marginLeft: "1em" }}
+                onChange={(e) => checkParams.onChange(e, "multiple-checks")}
+                name={checkParams.name}
+                checked={checkParams.stateData}
+            />
+        </Col>
     )
 }
