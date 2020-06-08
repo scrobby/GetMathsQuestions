@@ -51,15 +51,15 @@ export class TestForm extends Component {
                 let targetParent = e.target.name.substr(0, posi)
 
                 console.log("Parent: " + targetParent)
-                
+
                 let targetChild = e.target.name.substr(posi + 1, e.target.name.length - 1);
 
                 console.log("Child: " + targetChild)
-                
+
                 var newChecks = this.state[targetParent]
 
                 console.log("Checks: ", newChecks)
-                
+
                 newChecks[targetChild] = e.target.checked
 
                 this.setState({
@@ -320,11 +320,11 @@ function TestFormMultiChecks(props) {
     for (const [key] of Object.entries(props.stateData)) {
         let params = {
             sm: 2,
-            xs: 2,
+            xs: 6,
             onChange: props.onChange,
             name: props.name + "-" + key,
             stateData: props.stateData[key],
-            itemLabel: props.label
+            label: props.testData.options[key].label
         }
 
         checkboxes.push(params)
@@ -332,11 +332,14 @@ function TestFormMultiChecks(props) {
 
     return (
         <>
-            <Form.Label as={Col} sm="4" xs="8">{props.testData.label}</Form.Label>
-
-            {checkboxes.map((item) => {
-                return RenderMultiChecks(item)
-            })}
+            <Form.Label as={Col} md="4" sm="5" xs="6">{props.testData.label}</Form.Label>
+            <Col lg="3" md="4" sm="7" xs="6">
+                <Row>
+                {checkboxes.map((item) => {
+                    return RenderMultiChecks(item)
+                })}
+                </Row>
+            </Col>
         </>
     )
 }
@@ -345,13 +348,18 @@ function RenderMultiChecks(checkParams) {
     console.log("Name: " + JSON.stringify(checkParams.stateData))
 
     return (
-        <Col sm={checkParams.sm} xs={checkParams.xs} key={checkParams.name}>
-            <Form.Check
-                style={{ marginLeft: "1em" }}
-                onChange={(e) => checkParams.onChange(e, "multiple-checks")}
-                name={checkParams.name}
-                checked={checkParams.stateData}
-            />
+        <Col sm="4" xs="12" key={checkParams.name}>
+            <Row>
+                <Form.Label as={Col} xs="6" style={{ textAlign: "right", paddingRight: "0px" }}>{checkParams.label}: </Form.Label>
+                <Col xs="6" style={{ paddingLeft: "0px", textAlign: "left" }}>
+                    <Form.Check
+                        style={{ marginLeft: "1em" }}
+                        onChange={(e) => checkParams.onChange(e, "multiple-checks")}
+                        name={checkParams.name}
+                        checked={checkParams.stateData}
+                    />
+                </Col>
+            </Row>
         </Col>
     )
 }
