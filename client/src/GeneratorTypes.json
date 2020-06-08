@@ -85,7 +85,7 @@
                "include2" : {
                   "type" : "checkbox",
                   "label" : "2",
-                  "default" : false
+                  "default" : true
                },
                "include3" : {
                   "type" : "checkbox",

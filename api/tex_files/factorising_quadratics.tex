@@ -24,8 +24,6 @@ with open('config.json') as json_file:
   number_of_questions = data['numberOfQuestions']
   answers_range[0] = data['answersBetween_low']
   answers_range[1] = data['answersBetween_high']
-  equals_range[0] = data['xcoefficientsBetween_low']
-  equals_range[1] = data['xcoefficientsBetween_high']
 
   if data['x2coeffs_include1']:
     coeffs_list.append(1)
