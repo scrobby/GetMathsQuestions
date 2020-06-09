@@ -15,6 +15,10 @@ body {
     color: #8059D1 !important;
 }
 
+.react-icons {
+    color: #79B1E4;
+}
+
 h1 {
     color: #8059D1;
     font-weight: bolder;
@@ -67,8 +71,13 @@ a.card-footer:hover {
     transition: filter 0.3s;
 }
 
-
-
+.help-tooltip > .tooltip-inner {
+    background-color: #8059D1;
+}
+    
+.help-tooltip > .tooltip-arrow {
+    background-color: #8059D1;
+}
 
 /* For size-dependent stuff */
 

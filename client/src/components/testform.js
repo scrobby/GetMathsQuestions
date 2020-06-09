@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Form, Row, Col, Button, Spinner, Alert } from 'react-bootstrap';
+import { Form, Row, Col, Button, Spinner, Alert, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import axios from 'axios'
+import { IoIosInformationCircle } from 'react-icons/io'
 
 const API_BASE = process.env.REACT_APP_API_BASE;
 
@@ -248,13 +249,21 @@ function TestFormItem(props) {
     )
 }
 
-// function renderTooltip(props) {
+// function renderHelpTooltip(props) {
 //     return (
 //         <Tooltip id={props.id} {...props}>
 //             {props.helpMessage}
 //         </Tooltip>
 //     );
 // }
+
+function renderHelpTooltip(props, helpText) {
+    return (
+        <Tooltip id="help-tooltip" className="help-tooltip" {...props}>
+            {helpText}
+        </Tooltip>
+    );
+}
 
 function TestFormCheckbox(props) {
     return (
@@ -275,7 +284,13 @@ function TestFormCheckbox(props) {
 function TestFormInteger(props) {
     return (
         <>
-            <Form.Label as={Col} md="4">{props.testData.label}</Form.Label>
+            <Form.Label as={Col} md="4">{props.testData.label} <OverlayTrigger
+                placement="right"
+                delay={{ show: 150, hide: 150 }}
+                overlay={(e) => renderHelpTooltip(e, props.testData.help)}>
+                <IoIosInformationCircle className="react-icons" />
+            </OverlayTrigger>
+            </Form.Label>
             <Col md="8">
                 <Form.Control
                     type="number"
@@ -291,7 +306,14 @@ function TestFormInteger(props) {
 function TestFormRange(props) {
     return (
         <>
-            <Form.Label as={Col} xs="12" md="4">{props.testData.label}</Form.Label>
+            <Form.Label as={Col} xs="12" md="4" style={{ paddingRight: "5px" }}>
+                {props.testData.label} <OverlayTrigger
+                    placement="right"
+                    delay={{ show: 150, hide: 150 }}
+                    overlay={(e) => renderHelpTooltip(e, props.testData.help)}>
+                    <IoIosInformationCircle className="react-icons" />
+                </OverlayTrigger>
+            </Form.Label>
             <Col xs="6" md="4">
                 <Form.Control
                     type="number"
@@ -332,12 +354,18 @@ function TestFormMultiChecks(props) {
 
     return (
         <>
-            <Form.Label as={Col} md="4" sm="5" xs="6">{props.testData.label}</Form.Label>
+            <Form.Label as={Col} md="4" sm="5" xs="6">{props.testData.label} <OverlayTrigger
+                placement="right"
+                delay={{ show: 150, hide: 150 }}
+                overlay={(e) => renderHelpTooltip(e, props.testData.help)}>
+                <IoIosInformationCircle className="react-icons" />
+            </OverlayTrigger>
+            </Form.Label>
             <Col lg="3" md="4" sm="7" xs="6">
                 <Row>
-                {checkboxes.map((item) => {
-                    return RenderMultiChecks(item)
-                })}
+                    {checkboxes.map((item) => {
+                        return RenderMultiChecks(item)
+                    })}
                 </Row>
             </Col>
         </>

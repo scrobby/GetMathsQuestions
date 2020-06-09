@@ -26,31 +26,29 @@
          "answersBetween": {
             "label": "Answers range:",
             "type": "range",
+            "help": "The highest and lowest answers you will accept",
             "low": {
                "default": 1,
-               "help": "Lowest possible answer (must be more than X)",
                "min": null,
                "max": null
             },
             "high": {
                "default": 999,
-               "help": "Highest possible answer (must be less than X)",
                "min": null,
                "max": null
             }
          },
          "coefficientsBetween": {
             "label": "Variable coefficients range:",
+            "help": "The highest and lowest numbers you would like the coefficients to be",
             "type": "range",
             "low": {
                "default": 1,
-               "help": "Lowest possible coefficient (must be more than X)",
                "min": null,
                "max": null
             },
             "high": {
                "default": 999,
-               "help": "Highest possible coefficient (must be less than X)",
                "min": null,
                "max": null
             }
@@ -79,16 +77,15 @@
          },
          "answersBetween": {
             "label": "Answers range:",
+            "help": "The lowest and highest answers you would like",
             "type": "range",
             "low": {
                "default": 1,
-               "help": "Lowest possible answer (must be more than X)",
                "min": null,
                "max": null
             },
             "high": {
                "default": 500,
-               "help": "Highest possible answer (must be less than X)",
                "min": null,
                "max": null
             }
@@ -96,15 +93,14 @@
          "x2coefficientsBetween": {
             "label": "Coefficient of x^2 range:",
             "type": "range",
+            "help": "The highest and lowest numbers you would like the x^2 coefficients to be",
             "low": {
                "default": 1,
-               "help": "Lowest possible coefficient (must be more than X)",
                "min": null,
                "max": null
             },
             "high": {
                "default": 999,
-               "help": "Highest possible coefficient (must be less than X)",
                "min": null,
                "max": null
             }
@@ -112,15 +108,14 @@
          "xcoefficientsBetween": {
             "label": "Coefficient of x range:",
             "type": "range",
+            "help": "The highest and lowest numbers you would like the x coefficients to be",
             "low": {
                "default": 1,
-               "help": "Lowest possible coefficient (must be more than X)",
                "min": null,
                "max": null
             },
             "high": {
                "default": 500,
-               "help": "Highest possible coefficient (must be less than X)",
                "min": null,
                "max": null
             }
