@@ -68,6 +68,8 @@ a.card-footer:hover {
 }
 
 
+
+
 /* For size-dependent stuff */
 
 
@@ -115,12 +117,25 @@ a.card-footer:hover {
     overflow: hidden;
 }
 
+.texContainer {
+    background-color: white; 
+    background-size: "contain"; 
+    padding: 1.5em 0.25em 1.5em 0.25em;
+    text-align: center;
+    overflow: wrap;
+    border-bottom: 0.5px #CCC solid;
+}
+
 /* Small devices (tablets, 768px and up) */
 
 @media (min-width: 576px) {
     .cg-footer {
         text-align: right;
     }
+    
+    /* .texContainer {
+        font-size: 2vw;
+    } */
 }
 
 
@@ -131,6 +146,10 @@ a.card-footer:hover {
         padding-left: 0em !important;
         padding-right: 0em !important;
     }
+
+    /* .texContainer {
+        font-size: 1.5vw;
+    } */
 }
 
 
@@ -150,6 +169,10 @@ a.card-footer:hover {
         text-align: left;
         margin-top: 0px;
     }
+
+    /* .texContainer {
+        font-size: 14px;
+    } */
 }
 
 

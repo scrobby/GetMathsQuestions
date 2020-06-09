@@ -3,6 +3,18 @@
       "name": "Linear Simultaneous Equations",
       "pathComponent": "linear-simultaneous-equations",
       "description": "Simultaneous equations with 2 linear unknowns (x, y).",
+      "exampleScripts": [
+         "993x + 799y = 1157391 \\\\5x + 951y = 895039",
+         "9x + 10y = 518 \\\\16x + 23y = 1135",
+         "337x + 155y = 142651 \\\\465x + 245y = 209035",
+         "26x + 24y = 1250 \\\\3x +21y = 363",
+         "424x + 124y = 425736 \\\\954x + 264y = 944976",
+         "15x + 11y = 1049 \\\\16x + 25y = 1769",
+         "6x + 24y = 516 \\\\12x + 19y = 568",
+         "19x + 2y = 934 \\\\14x + 6y = 910",
+         "16x + 7y = 393 \\\\9x + 2y = 161",
+         "8x + 2y = 434 \\\\7x + 8y = 636"
+      ],
       "exampleImage": null,
       "form": {
          "numberOfQuestions": {
@@ -50,6 +62,14 @@
       "pathComponent": "factorising-quadratic-equations",
       "description": "Quadratic expressions which can be factorised, with integer solutions for when the expression = zero.",
       "exampleImage": null,
+      "exampleScripts": [
+         "999x^2 - 679320x + 97277969 = 344",
+         "x^2 - 492x + 759 = 268",
+         "12x^2 - 5856x + 317136 = 192",
+         "2x^2 - 1282x + 164320 = 6",
+         "3x^2 - 2253x + 412690 = 310",
+         "32x^2 - 5472x + 219239 = 103"
+      ],
       "form": {
          "numberOfQuestions": {
             "label": "Number of questions:",
@@ -112,6 +132,18 @@
       "pathComponent": "factorising-quadratic-equations-fractions",
       "description": "Quadratic expressions which can be factorised, with integer solutions for when the expression = zero.",
       "exampleImage": null,
+      "exampleScripts": [
+         "2x^2 - 444x + 7400 = 56",
+         "x^2 - 479x + 50497 = 277",
+         "x^2 - 461x + 37915 = 285",
+         "2x^2 - 657x + 47254 = 201",
+         "3x^2 - 990x + 54671 = 71",
+         "2x^2 - 1802x + 404990 = 290",
+         "2x^2 - 1273x + 198354 = 159",
+         "3x^2 - 1798x + 197233 = 218",
+         "3x^2 - 2419x + 485866 = 290",
+         "x^2 - 352x + 27280 = 25"
+      ],
       "form": {
          "numberOfQuestions": {
             "label": "Number of questions:",
