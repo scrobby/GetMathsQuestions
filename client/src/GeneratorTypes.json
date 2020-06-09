@@ -59,14 +59,17 @@
       "name": "Factorising Quadratic Equations",
       "pathComponent": "factorising-quadratic-equations",
       "description": "Quadratic expressions which can be factorised, with integer solutions for when the expression = zero.",
-      "exampleImage": null,
       "exampleScripts": [
-         "999x^2 - 679320x + 97277969 = 344",
-         "x^2 - 492x + 759 = 268",
-         "12x^2 - 5856x + 317136 = 192",
-         "2x^2 - 1282x + 164320 = 6",
-         "3x^2 - 2253x + 412690 = 310",
-         "32x^2 - 5472x + 219239 = 103"
+         "2x^2 - 444x + 7400 = 56",
+         "x^2 - 479x + 50497 = 277",
+         "x^2 - 461x + 37915 = 285",
+         "2x^2 - 657x + 47254 = 201",
+         "3x^2 - 990x + 54671 = 71",
+         "2x^2 - 1802x + 404990 = 290",
+         "2x^2 - 1273x + 198354 = 159",
+         "3x^2 - 1798x + 197233 = 218",
+         "3x^2 - 2419x + 485866 = 290",
+         "x^2 - 352x + 27280 = 25"
       ],
       "form": {
          "numberOfQuestions": {
@@ -90,25 +93,10 @@
                "max": null
             }
          },
-         "x2coefficientsBetween": {
-            "label": "Coefficient of x^2 range:",
+         "equalsBetween": {
+            "label": "Equals range:",
+            "help": "Morgane will make a much clearer explanation… right?",
             "type": "range",
-            "help": "The highest and lowest numbers you would like the x^2 coefficients to be",
-            "low": {
-               "default": 1,
-               "min": null,
-               "max": null
-            },
-            "high": {
-               "default": 999,
-               "min": null,
-               "max": null
-            }
-         },
-         "xcoefficientsBetween": {
-            "label": "Coefficient of x range:",
-            "type": "range",
-            "help": "The highest and lowest numbers you would like the x coefficients to be",
             "low": {
                "default": 1,
                "min": null,
@@ -118,6 +106,28 @@
                "default": 500,
                "min": null,
                "max": null
+            }
+         },
+         "x2coeffs": {
+            "label": "Coefficient of x^2 range:",
+            "help": "Select the coefficients you would like to include",
+            "type": "multiple-checks",
+            "options": {
+               "include1": {
+                  "type": "checkbox",
+                  "label": "1",
+                  "default": true
+               },
+               "include2": {
+                  "type": "checkbox",
+                  "label": "2",
+                  "default": true
+               },
+               "include3": {
+                  "type": "checkbox",
+                  "label": "3",
+                  "default": true
+               }
             }
          }
       }
