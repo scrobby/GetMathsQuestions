@@ -56,6 +56,15 @@ module.exports = (texfile, options, callback) => {
             mkdirp.sync(pdfFilesFolder);
         }
 
+        // check for any miswritten booleans
+        for (const [key, value] of Object.entries(texOptions)) {
+            if (value === "true") {
+                texOptions[key] = true
+            } else if (value === "false") {
+                texOptions[key] = false
+            }
+        }
+
         // write the options to a file ready to be passed through
         fs.writeFile(tmpConfigPath, JSON.stringify(texOptions), 'utf8', (err) => {
             if (err) {
