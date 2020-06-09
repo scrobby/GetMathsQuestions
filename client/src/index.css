@@ -126,6 +126,10 @@ a.card-footer:hover {
     border-bottom: 0.5px #CCC solid;
 }
 
+.katex {
+    font-size: 20px !important;
+}
+
 /* Small devices (tablets, 768px and up) */
 
 @media (min-width: 576px) {

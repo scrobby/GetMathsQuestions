@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom'
 // Get the error messages
 import messages from '../404Messages.json'
 
-// TODO: Add a random equation in here, just for fun
+// Get stuff for rendering TeX
+import TeX from '@matejmazur/react-katex'
 
 export default class NotFound extends Component {
 
@@ -23,17 +24,15 @@ export default class NotFound extends Component {
                     paddingTop: "40px",
                     paddingRight: "1em",
                     paddingLeft: "1em",
-                    paddingBottom: "60px"
+                    paddingBottom: "60px",
+                    fontSize: "20px"
                 }}>
                     <Row>
-                        <h4><b>Here's a question instead:</b></h4>
+                        <p><b>Here's a question instead:</b></p>
                     </Row>
+                    <TeXProblem problem={randomProblem}/>
                     <Row>
-                        <Col sm={1} xs={2}><h4 style={{ textAlign: "right" }}>{Math.floor(Math.random() * 99)}) </h4></Col>
-                        <Col sm={11} xs={10}><h4>{randomProblem.text}</h4></Col>
-                    </Row>
-                    <Row>
-                        <p className="float-left" style={{ marginTop: "20px" }}><a target="_blank" rel="noopener noreferrer" href={randomProblem.link.url}>{randomProblem.link.title}</a></p>
+                        <p className="float-left" style={{ marginTop: "20px", fontSize: "16px" }}><a target="_blank" rel="noopener noreferrer" href={randomProblem.link.url}>{randomProblem.link.title}</a></p>
                     </Row>
                 </Jumbotron>
                 <div style={{ width: "100%", marginTop: "40px", marginBottom: "20px" }} className="text-center">
@@ -42,4 +41,45 @@ export default class NotFound extends Component {
             </>
         )
     }
+}
+
+function TeXProblem(props) {
+    const questionNo = Math.floor(Math.random() * 99) + ")"
+
+    const questionParts = props.problem.text.split("$")
+    
+    // if (!modified) {
+    //     var willChange = true
+    //     var nextIsOdd = true
+
+    //     while (willChange) {
+    //         let newString = props.problem.text.replace("$", nextIsOdd ? "<Tex>" : "</Tex>")
+
+    //         if (newString !== props.problem.text) {
+    //             props.problem.text = newString
+    //             nextIsOdd = !nextIsOdd
+    //         } else {
+    //             willChange = false
+    //         }
+    //     }
+    // }
+
+    return (
+        <Row>
+            <Col sm={1} xs={2}>
+                <p style={{ textAlign: "right" }}>{questionNo}</p>
+            </Col>
+            <Col sm={11} xs={10}>
+                <p>{questionParts.map((part, i) => {
+                    if (i === 0) {
+                        return part
+                    } else if (i%2 !== 0) {
+                    return (<TeX key={"txq_" + i}>{part}</TeX>)
+                    } else {
+                        return part
+                    }
+                })}</p>
+            </Col>
+        </Row>
+    )
 }

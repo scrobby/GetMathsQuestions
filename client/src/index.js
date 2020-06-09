@@ -14,6 +14,7 @@ import NotFound from './pages/notfound';
 import Navigation from './components/navigation';
 
 // Get other assets for styling etc
+import 'katex/dist/katex.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 

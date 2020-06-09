@@ -7,6 +7,13 @@
         }
     },
     {
+        "text": "Imagine a two-dimensional corridor with a constant width of $1$ and a corner of exactly $90°$. You have a sofa that you need to get around the corner. What is the largest possible area that sofa can be?",
+        "link": {
+            "url": "https://en.wikipedia.org/wiki/Moving_sofa_problem",
+            "title": "Read more about the Sofa Constant"
+        }
+    },
+    {
         "text": "Here is a super concise way of asking someone about the Hodge conjecture",
         "link": {
             "url": "https://en.wikipedia.org/wiki/Hodge_conjecture",

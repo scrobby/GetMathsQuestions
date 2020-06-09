@@ -2,7 +2,6 @@
 import React, { Component } from 'react'
 import { Card, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import 'katex/dist/katex.min.css'
 import TeX from '@matejmazur/react-katex'
 import FitText from '@kennethormandy/react-fittext'
 
