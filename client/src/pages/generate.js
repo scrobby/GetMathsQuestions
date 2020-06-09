@@ -11,25 +11,30 @@ export default class GenerateTest extends Component {
         const path = this.props.match.params.id;
         const test = this.props.generatorTypes.filter((test) => test.pathComponent.includes(path))[0];
 
-        return (
-            <>
-                <Row>
-                    <Col xs="12">
-                        <h1>{test.name}</h1>
-                        <p className="test-description">{test.description}</p>
-                    </Col>
-                </Row>
-                {/* TODO: Make this actually submit, probably having all the logic baked into the form itself */}
-                <Row>
-                    <Col xs="12">
-                        <TestForm 
-                            data={test.form} 
-                            key={path}
-                            path={path} />
-                    </Col>
-                </Row>
-            </>
-        )
+        if (test) {
+            return (
+                <>
+                    <Row>
+                        <Col xs="12">
+                            <h1>{test.name}</h1>
+                            <p className="test-description">{test.description}</p>
+                        </Col>
+                    </Row>
+                    {/* TODO: Make this actually submit, probably having all the logic baked into the form itself */}
+                    <Row>
+                        <Col xs="12">
+                            <TestForm 
+                                data={test.form} 
+                                key={path}
+                                path={path} />
+                        </Col>
+                    </Row>
+                </>
+            )
+        } else {
+            this.props.history.push('/notfound')
+            return null
+        }
     }
 }
 
