@@ -1,8 +1,8 @@
 [
    {
-      "name": "Linear Simultaneous Equations",
-      "pathComponent": "linear-simultaneous-equations",
-      "description": "Simultaneous equations with 2 linear unknowns (x, y).",
+      "name": "Simultaneous Equations",
+      "pathComponent": "simultaneous-equations",
+      "description": "Simultaneous equations with 2 unknowns (x, y).",
       "exampleScripts": [
          "993x + 799y = 1157391 \\\\5x + 951y = 895039",
          "9x + 10y = 518 \\\\16x + 23y = 1135",
@@ -24,33 +24,31 @@
             "default": 10
          },
          "answersBetween": {
-            "label": "Answers range:",
+            "label": "Solutions range:",
             "type": "range",
+            "help": "Solutions to the questions will be in the range between these two numbers",
             "low": {
-               "default": 1,
-               "help": "Lowest possible answer (must be more than X)",
+               "default": -10,
                "min": null,
                "max": null
             },
             "high": {
-               "default": 999,
-               "help": "Highest possible answer (must be less than X)",
+               "default": 10,
                "min": null,
                "max": null
             }
          },
          "coefficientsBetween": {
             "label": "Variable coefficients range:",
+            "help": "Coefficients of x and y will be between these two numbers",
             "type": "range",
             "low": {
-               "default": 1,
-               "help": "Lowest possible coefficient (must be more than X)",
+               "default": -12,
                "min": null,
                "max": null
             },
             "high": {
-               "default": 999,
-               "help": "Highest possible coefficient (must be less than X)",
+               "default": 12,
                "min": null,
                "max": null
             }
@@ -58,82 +56,80 @@
       }
    },
    {
-       "name": "Factorising Quadratic Equations With Fractions",
-       "pathComponent": "factorising-quadratic-equations-fractions",
-       "description": "Quadratic expressions which can be factorised, with integer solutions for when the expression = zero.",
-       "exampleImage": null,
-       "exampleScripts": [
-          "2x^2 - 444x + 7400 = 56",
-          "x^2 - 479x + 50497 = 277",
-          "x^2 - 461x + 37915 = 285",
-          "2x^2 - 657x + 47254 = 201",
-          "3x^2 - 990x + 54671 = 71",
-          "2x^2 - 1802x + 404990 = 290",
-          "2x^2 - 1273x + 198354 = 159",
-          "3x^2 - 1798x + 197233 = 218",
-          "3x^2 - 2419x + 485866 = 290",
-          "x^2 - 352x + 27280 = 25"
-       ],
-       "form": {
-          "numberOfQuestions": {
-             "label": "Number of questions:",
-             "help": "Enter the number of questions you want to generate",
-             "type": "integer",
-             "default": 10
-          },
-          "answersBetween": {
-             "label": "Answers range:",
-             "type": "range",
-             "low": {
-                "default": 1,
-                "help": "Lowest possible answer (must be more than X)",
-                "min": null,
-                "max": null
-             },
-             "high": {
-                "default": 500,
-                "help": "Highest possible answer (must be less than X)",
-                "min": null,
-                "max": null
-             }
-          },
-          "equalsBetween": {
-             "label": "Equals range:",
-             "type": "range",
-             "low": {
-                "default": 1,
-                "help": "Lowest possible equals (must be more than X)",
-                "min": null,
-                "max": null
-             },
-             "high": {
-                "default": 500,
-                "help": "Highest possible equals (must be less than X)",
-                "min": null,
-                "max": null
-             }
-          },
-          "x2coeffs": {
-             "label": "Coefficient of x^2 range:",
-             "type": "multiple-checks",
-             "options": {
-                "include1": {
-                   "type": "checkbox",
-                   "label": "1",
-                   "default": true
-                },
-                "include2": {
-                   "type": "checkbox",
-                   "label": "2",
-                   "default": true
-                },
-                "include3": {
-                   "type": "checkbox",
-                   "label": "3",
-                   "default": true
-                }
-             }
-          }
-       }
-    }
+      "name": "Factorising Quadratic Equations",
+      "pathComponent": "factorising-quadratic-equations",
+      "description": "Quadratic expressions which can be factorised, with possibility of fraction answers where coefficient of x^2 is more than 1.",
+      "exampleScripts": [
+         "2x^2 - 444x + 7400 = 56",
+         "x^2 - 479x + 50497 = 277",
+         "x^2 - 461x + 37915 = 285",
+         "2x^2 - 657x + 47254 = 201",
+         "3x^2 - 990x + 54671 = 71",
+         "2x^2 - 1802x + 404990 = 290",
+         "2x^2 - 1273x + 198354 = 159",
+         "3x^2 - 1798x + 197233 = 218",
+         "3x^2 - 2419x + 485866 = 290",
+         "x^2 - 352x + 27280 = 25"
+      ],
+      "form": {
+         "numberOfQuestions": {
+            "label": "Number of questions:",
+            "help": "Enter the number of questions you want to generate",
+            "type": "integer",
+            "default": 10
+         },
+         "answersBetween": {
+            "label": "Solutions range:",
+            "help": "Solutions to the questions will be in the range between these two numbers",
+            "type": "range",
+            "low": {
+               "default": -15,
+               "min": null,
+               "max": null
+            },
+            "high": {
+               "default": 15,
+               "min": null,
+               "max": null
+            }
+         },
+         "equalsBetween": {
+            "label": "Equals range:",
+            "help": "A number from this range will appear on 'the other side' of the equals sign. Make both of these zero to have all equations equal zero.",
+            "type": "range",
+            "low": {
+               "default": -20,
+               "min": null,
+               "max": null
+            },
+            "high": {
+               "default": 20,
+               "min": null,
+               "max": null
+            }
+         },
+         "x2coeffs": {
+            "label": "Coefficient of x^2 range:",
+            "help": "Select the coefficients of x^2 you would like to include in your questions",
+            "type": "multiple-checks",
+            "options": {
+               "include1": {
+                  "type": "checkbox",
+                  "label": "1",
+                  "default": true
+               },
+               "include2": {
+                  "type": "checkbox",
+                  "label": "2",
+                  "default": true
+               },
+               "include3": {
+                  "type": "checkbox",
+                  "label": "3",
+                  "default": true
+               }
+            }
+         }
+      }
+   }
 ]
