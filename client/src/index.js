@@ -14,6 +14,7 @@ import NotFound from './pages/notfound';
 import Navigation from './components/navigation';
 
 // Get other assets for styling etc
+import ScrollToTop from './components/scrollToTop'
 import 'katex/dist/katex.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
@@ -24,10 +25,12 @@ import generatorTypes from './GeneratorTypes.json'
 function Routing() {
   return (
     <Switch>
+      <ScrollToTop>
       <Route exact path="/" component={Home} />
       <Route exact path="/generate/" component={(props) => <AllTests {...props} generatorTypes={generatorTypes} />} />
       {/* TODO: Make this a super smart way of rendering out the tests depending on type */}
       <Route path="/generate/:id" component={(props) => <GenerateTest {...props} generatorTypes={generatorTypes} />} />
+      </ScrollToTop>
       <Route component={NotFound} />
     </Switch>
   )
