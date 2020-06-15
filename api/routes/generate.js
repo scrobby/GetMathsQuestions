@@ -19,7 +19,7 @@ const awsFolder = 'pdfs'
 // TODO: Make this better and more reliable than just chucking it into an object
 const typesAndTexFiles = [
     {
-        path: "linear-simultaneous-equations",
+        path: "simultaneous-equations",
         texFile: "simultaneous_equations.tex"
     },
     {
